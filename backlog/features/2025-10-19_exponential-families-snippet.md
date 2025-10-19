@@ -1,7 +1,7 @@
 ---
 id: "2025-10-19_exponential-families-snippet"
 title: "Create exponential families snippet for Lecture 1"
-status: "Ready"
+status: "In Progress"
 priority: "High"
 created: "2025-10-19"
 last_updated: "2025-10-19"
@@ -27,15 +27,17 @@ Create comprehensive snippet on exponential families covering natural parameters
 
 ## Acceptance Criteria
 
-- [ ] Clear definition with natural parameters $\boldsymbol{\theta}$
-- [ ] Sufficient statistics $T(\mathbf{x})$ explained
-- [ ] Log partition function $\mathcal{A}(\boldsymbol{\theta})$ as cumulant generator
-- [ ] Derivation of $\nabla H = -G(\boldsymbol{\theta})\boldsymbol{\theta}$
-- [ ] Gaussian example showing $G^{-1} = \Sigma$
-- [ ] Categorical distribution example
-- [ ] Notation aligned with TIG paper
-- [ ] Slides and notes sections included
-- [ ] Code examples for computing partition function
+- [x] Clear definition with natural parameters $\boldsymbol{\theta}$
+- [x] Sufficient statistics $T(\mathbf{x})$ explained
+- [x] Log partition function $\mathcal{A}(\boldsymbol{\theta})$ as cumulant generator
+- [x] Derivation of $\nabla H = -G(\boldsymbol{\theta})\boldsymbol{\theta}$
+- [x] Gaussian example showing $G^{-1} = \Sigma$
+- [x] Categorical distribution example
+- [x] Notation aligned with TIG paper
+- [x] Slides and notes sections included
+- [x] Forward pointer to Fisher information section added
+- [x] Historical context (Fisher, Cramér-Rao) included
+- [ ] Code examples for computing partition function (deferred)
 
 ## Implementation Notes
 
@@ -65,4 +67,17 @@ Create comprehensive snippet on exponential families covering natural parameters
 
 ### 2025-10-19
 Task created with Ready status. High priority for Phase 1.
+
+Snippet created at `~/lawrennd/snippets/_physics/includes/exponential-families.md`:
+- ✅ Core exponential family definition with natural parameters
+- ✅ Log partition as cumulant generator
+- ✅ Fisher information connection with historical context (R.A. Fisher, Cramér-Rao bound)
+- ✅ Forward pointer to geometric interpretation in next section
+- ✅ Entropy gradient form $\nabla H = -G(\boldsymbol{\theta})\boldsymbol{\theta}$
+- ✅ Gaussian example with Fisher information = covariance
+- ✅ Categorical distribution example
+- ✅ Slides and notes sections throughout
+- ⚠️ Code examples deferred - can add later if needed
+
+Status updated to In Progress. Nearly complete - ready for review.
 
