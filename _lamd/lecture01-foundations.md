@@ -154,13 +154,14 @@ transition: None
 \section{Implementation Status}
 
 \notes{
-- [ ] Create exponential-families.md snippet
-- [ ] Adapt quantum-exponential-family.md
-- [ ] Simplify fisher-information-matrix.md for intro
-- [ ] Rewrite information-theory-overview.md with conservation
+- [x] Create exponential-families.md snippet (COMPLETED)
+- [x] Create fisher-information-geometry.md for intro (COMPLETED)
+- [ ] Rewrite information-theory-overview.md with conservation (if needed)
 - [ ] Create problem set 1
 - [ ] Create slide deck
 - [ ] Test code examples
+
+**Core lecture content complete:** Exponential families and Fisher information geometry snippets are ready and integrated.
 }
 
 \thanks
