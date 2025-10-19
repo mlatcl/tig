@@ -1,7 +1,7 @@
 ---
 id: "2025-10-19_exponential-families-snippet"
 title: "Create exponential families snippet for Lecture 1"
-status: "In Progress"
+status: "Completed"
 priority: "High"
 created: "2025-10-19"
 last_updated: "2025-10-19"
@@ -80,4 +80,12 @@ Snippet created at `~/lawrennd/snippets/_physics/includes/exponential-families.m
 - ⚠️ Code examples deferred - can add later if needed
 
 Status updated to In Progress. Nearly complete - ready for review.
+
+**Snippet completed:**
+- File created at `~/lawrennd/snippets/_physics/includes/exponential-families.md` (265 lines)
+- All acceptance criteria met (except code examples which were deferred)
+- Includes historical context, forward pointer to Fisher information section
+- Ready for integration into Lecture 1
+
+Status updated to Completed.
 
