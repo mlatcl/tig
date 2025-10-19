@@ -97,6 +97,42 @@ transition: None
 
 \section{Planned Structure}
 
+\subsection{Introduction (5 min)}
+
+\notes{
+- Recap: Lecture 1 covered exponential families and Fisher information
+- Today: The axioms that make TIG unique
+- From general principles to specific framework
+}
+
+\subsection{Baez Information Loss Axioms (20 min)}
+
+\notes{
+\include{_physics/includes/baez-information-loss.md}
+}
+
+\subsection{The Fourth Axiom: Information Conservation (20 min)}
+
+\notes{
+\include{_information-game/includes/information-conservation-axiom.md}
+}
+
+\subsection{Multi-Information and Submodularity (15 min)}
+
+\notes{
+\include{_information-game/includes/submodularity-multi-information.md}
+}
+
+\subsection{Wrap-up (5 min)}
+
+\notes{
+- Summary: Four axioms define the game
+- Next lecture: What dynamics emerge from these axioms?
+- Problem set 2 assigned
+}
+
+\section{Original Planned Structure (for reference)}
+
 \subsection{Review (5 min)}
 
 \notes{
