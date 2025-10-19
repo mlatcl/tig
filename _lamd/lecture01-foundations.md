@@ -128,10 +128,10 @@ transition: None
 \include{_information-game/includes/quantum-exponential-family.md}
 }
 
-\subsection{Fisher Information Matrix (20 min)}
+\subsection{Fisher Information as Geometry (20 min)}
 
 \notes{
-\include{_information-game/includes/fisher-information-matrix.md}
+\include{_information-game/includes/fisher-information-geometry.md}
 }
 
 \subsection{Wrap-up (5 min)}
