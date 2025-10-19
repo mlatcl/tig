@@ -29,11 +29,11 @@ This will prompt you for:
 
 Alternatively, manually replace the following placeholders throughout the template:
 
-- `COURSECODE` - Your course code (e.g., mlfc, advds)
-- `COURSETITLE` - Your course full title
-- `COURSE_DESCRIPTION` - Short course description
-- `COURSE_DESCRIPTION_EXTENDED` - Longer description for home page
-- `COURSE_OVERVIEW_TEXT` - Overview paragraph for home page
+- `tig` - Your course code (e.g., mlfc, advds)
+- `The Inaccessible Game` - Your course full title
+- `A course about entropy, information geometry and Fisher information` - Short course description
+- `A course about entropy, information geometry and Fisher information` - Longer description for home page
+- `A course about entropy, information geometry and Fisher information` - Overview paragraph for home page
 - `Your Name`, `Your Institution` - Author information
 
 ### 3. Install Dependencies
@@ -59,7 +59,7 @@ maketalk 01-01-introduction.md
 
 ```bash
 bundle exec jekyll serve
-# Visit http://localhost:4000/COURSECODE/
+# Visit http://localhost:4000/tig/
 ```
 
 ### 6. Deploy to GitHub Pages
@@ -234,7 +234,7 @@ Place images in `slides/diagrams/` and reference in markdown:
 
 ```bash
 bundle exec jekyll serve --watch
-# Visit http://localhost:4000/COURSECODE/
+# Visit http://localhost:4000/tig/
 ```
 
 ### Clean Generated Files

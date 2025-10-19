@@ -34,7 +34,7 @@ echo "-------------------"
 prompt_with_default "Course code (e.g., mlfc, advds)" "mycoursecode" COURSECODE
 prompt_with_default "Course title (e.g., Machine Learning Foundations)" "My Course Title" COURSETITLE
 prompt_with_default "Short description" "A course about machine learning" COURSE_DESC
-prompt_with_default "GitHub organization/username" "mlatcl" GITHUB_ORG
+prompt_with_default "GitHub organization/username" "e.g. mlatcl" GITHUB_ORG
 
 echo ""
 echo "Author Information:"
@@ -82,10 +82,11 @@ s/COURSETITLE/$COURSETITLE/g
 s/COURSE_DESCRIPTION_EXTENDED/$COURSE_DESC/g
 s/COURSE_DESCRIPTION/$COURSE_DESC/g
 s/COURSE_OVERVIEW_TEXT/$COURSE_DESC/g
+s/GITHUB_ORG/$GITHUB_ORG/g
 s/YOUR_INSTITUTION/$INSTITUTION/g
 s/YOUR_GIVEN_NAME/${AUTHOR_GIVEN}/g
 s/YOUR_FAMILY_NAME/${AUTHOR_FAMILY}/g
-s/YOUR_URL/${AUTHOR_URL}/g
+s|YOUR_URL|${AUTHOR_URL}|g
 s/COURSE_VENUE_NAME/$VENUE/g
 EOF
 

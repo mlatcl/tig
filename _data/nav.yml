@@ -3,7 +3,7 @@
 
 main_nav:
   - label: Overview
-    link: /COURSECODE/
+    link: /tig/
   - label: Resources
     link: /resources/
   - label: Teaching
