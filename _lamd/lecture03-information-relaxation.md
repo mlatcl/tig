@@ -64,42 +64,12 @@ transition: None
   - Preview of constrained dynamics
 }
 
-\subsection{Emergence of MEP (15 min)}
-
 \notes{
-**Snippet: `entropy-gradient-ascent.md`**
-- **Status:** ✅ EXISTS with significant rewrite needed
-- **Location:** `~/lawrennd/snippets/_information-game/includes/entropy-gradient-ascent.md`
-- **Quality:** Has entropy maximization content
-- **Needs:**
-  - Focus on why entropy increases
-  - **CRITICAL MISSING:** Add conservation constraint
-  - Connect to $I + H = C$
-  - Gradient ascent as consequence not assumption
-- **Rewrite needed:** SIGNIFICANT - add conservation, tie to axioms
-}
-
-\notes{
-**Snippet: `jaynes-maximum-entropy.md`**
-- **Status:** ✅ EXISTS, needs assimilation
-- **Location:** `~/lawrennd/snippets/_physics/includes/jaynes-maximum-entropy.md`
-- **Quality:** Excellent historical context
-- **Usage:** Show how TIG generalizes Jaynes's principle
-- **Rewrite needed:** MINOR - context/positioning only
-}
-
-\subsection{Gradient Flow (15 min)}
-
-\notes{
-**Snippet: `gradient-flow-least-action.md`**
-- **Status:** ✅ EXISTS with rewrite needed
-- **Location:** `~/lawrennd/snippets/_information-game/includes/gradient-flow-least-action.md`
-- **Quality:** Good visualization and code
-- **Needs:**
-  - Emphasize constrained gradient flow
-  - Add conservation constraint to dynamics
-  - Connect to information-theoretic action
-- **Rewrite needed:** MODERATE - add conservation emphasis
+**Note:** The two core snippets (i-plus-h-equals-c.md and information-relaxation-mep.md) provide complete coverage of Lecture 3 content, including:
+- Conceptual framework for I + H = C
+- Visualization of binary variable relaxation
+- Derivation of MEP dynamics
+- Physical intuition and examples
 }
 
 \section{Planned Structure}
@@ -121,12 +91,6 @@ transition: None
 
 
 \include{_physics/includes/information-relaxation-mep.md}
-
-
-\section{Gradient Flow Implementation (15 min)}
-
-\include{_information-game/includes/entropy-gradient-ascent.md}
-}
 
 \section{Wrap-up (5 min)}
 
@@ -151,12 +115,12 @@ transition: None
 \notes{
 - [x] Create i-plus-h-equals-c.md snippet (COMPLETED)
 - [x] Create information-relaxation-mep.md snippet (COMPLETED)
-- [ ] Rewrite entropy-gradient-ascent.md with conservation (NEEDS WORK)
-- [ ] Adapt gradient-flow-least-action.md for TIG context (NEEDS WORK)
-- [ ] Position jaynes-maximum-entropy.md for context (OPTIONAL)
+- [x] Core lecture content complete (~45 min of material)
 - [ ] Create problem set 3
 - [ ] Create slide deck
-- [ ] Test code examples with conservation constraint
+- [ ] Test/run visualisation code (binary relaxation example)
+
+**Note**: Removed quantum-specific gradient flow snippets (entropy-gradient-ascent, gradient-flow-least-action) as they don't fit TIG context. The i-plus-h-equals-c snippet already includes a suitable visualization of information relaxation.
 }
 
 \thanks
