@@ -27,9 +27,9 @@ transition: None
 
 **Learning Objectives:**
 1. Understand the $I + H = C$ structure
-2. Grasp the reverse Noether argument
-3. See how MEP emerges from information dynamics
-4. Connect to gradient flow and entropy maximization
+2. Grasp the information relaxation principle
+3. See how MEP emerges from second law + conservation
+4. Derive the gradient flow dynamics $\dot{\boldsymbol{\theta}} = -G\boldsymbol{\theta}$
 }
 
 \section{Required Snippets}
@@ -38,29 +38,30 @@ transition: None
 
 \notes{
 **Snippet: `i-plus-h-equals-c.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Source reference:** TIG paper core result
-- **Needs:**
+- **Status:** ✅ CREATED
+- **Location:** `~/lawrennd/snippets/_physics/includes/i-plus-h-equals-c.md`
+- **Content:**
   - Multi-information $I$ definition
   - Joint entropy $H$ definition
-  - Constant $C$ and conservation
-  - Why this structure is fundamental
+  - Information action principle $I + H = C$
+  - Physical analogy to classical mechanics
+  - Information relaxation principle
   - Connection to marginal entropy conservation
-- **Rewrite needed:** N/A - create from scratch
 }
 
-\subsection{Reverse Noether Argument (20 min)}
+\subsection{Information Relaxation to MEP (20 min)}
 
 \notes{
-**Snippet: `reverse-noether.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Source reference:** TIG paper
-- **Needs:**
-  - Standard Noether's theorem review (symmetry → conservation)
-  - Reverse direction (conservation → dynamics)
-  - How $I + H = C$ implies specific dynamics
-  - Connection to Lagrangian formulation
-- **Rewrite needed:** N/A - create from scratch
+**Snippet: `information-relaxation-mep.md`**
+- **Status:** ✅ CREATED
+- **Location:** `~/lawrennd/snippets/_physics/includes/information-relaxation-mep.md`
+- **Content:**
+  - Second law implies $\dot{H} \geq 0$, therefore $\dot{I} \leq 0$
+  - Maximum entropy production principle
+  - Derivation of $\dot{\boldsymbol{\theta}} = -G(\boldsymbol{\theta})\boldsymbol{\theta}$
+  - Why this is the unique dynamics
+  - Physical intuition and gas diffusion analogy
+  - Preview of constrained dynamics
 }
 
 \subsection{Emergence of MEP (15 min)}
@@ -106,34 +107,33 @@ transition: None
 \subsection{Review (5 min)}
 
 \notes{
-- Axioms and conservation
-- Setting up the dynamics question
+- Four axioms recap
+- Conservation: $\sum h_i = C$
+- Today's question: What dynamics does this imply?
 }
 
 \subsection{The I + H = C Structure (20 min)}
 
-\notes{
 \include{_physics/includes/i-plus-h-equals-c.md}
-}
 
-\subsection{Reverse Noether Argument (15 min)}
 
-\notes{
-\include{_physics/includes/reverse-noether.md}
-}
+\section{Information Relaxation to MEP (20 min)}
 
-\subsection{Gradient Flow and MEP (15 min)}
 
-\notes{
+\include{_physics/includes/information-relaxation-mep.md}
+
+
+\section{Gradient Flow Implementation (15 min)}
+
 \include{_information-game/includes/entropy-gradient-ascent.md}
-\include{_information-game/includes/gradient-flow-least-action.md}
 }
 
-\subsection{Wrap-up (5 min)}
+\section{Wrap-up (5 min)}
 
 \notes{
-- Why these dynamics are unique
-- Preview: Adding Lagrangian constraints
+- Information relaxation as fundamental principle
+- MEP gives unique dynamics: $\dot{\boldsymbol{\theta}} = -G\boldsymbol{\theta}$
+- Preview: Adding Lagrangian constraints (Lecture 4)
 }
 
 \section{Problems and Exercises}
@@ -149,14 +149,14 @@ transition: None
 \section{Implementation Status}
 
 \notes{
-- [ ] Create i-plus-h-equals-c.md snippet
-- [ ] Create reverse-noether.md snippet
-- [ ] Rewrite entropy-gradient-ascent.md with conservation
-- [ ] Adapt gradient-flow-least-action.md
-- [ ] Position jaynes-maximum-entropy.md for context
+- [x] Create i-plus-h-equals-c.md snippet (COMPLETED)
+- [x] Create information-relaxation-mep.md snippet (COMPLETED)
+- [ ] Rewrite entropy-gradient-ascent.md with conservation (NEEDS WORK)
+- [ ] Adapt gradient-flow-least-action.md for TIG context (NEEDS WORK)
+- [ ] Position jaynes-maximum-entropy.md for context (OPTIONAL)
 - [ ] Create problem set 3
 - [ ] Create slide deck
-- [ ] Create visualization of constrained gradient flow
+- [ ] Test code examples with conservation constraint
 }
 
 \thanks
