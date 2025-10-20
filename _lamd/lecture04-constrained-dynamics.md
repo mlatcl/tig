@@ -115,40 +115,28 @@ transition: None
 \subsection{Review (5 min)}
 
 \notes{
-- Gradient flow from Lecture 3
-- Need for constraints
+- Gradient flow from Lecture 3: $\dot{\boldsymbol{\theta}} = -G\boldsymbol{\theta}$
+- Need for explicit constraints
 }
 
-\subsection{Lagrangian Mechanics Primer (15 min)}
+\section{Lagrangian Mechanics Primer (20 min)}
 
-\notes{
 \include{_physics/includes/lagrange-multipliers-review.md}
-}
 
-\subsection{Information Dynamics Lagrangian (15 min)}
+\section{Computing $\nu(t)$ (15 min)}
 
-\notes{
-\include{_information-game/includes/action-potential-formulation.md}
-}
-
-\subsection{Computing ν(t) and Stationary Points (15 min)}
-
-\notes{
 \include{_physics/includes/lagrange-multiplier-dynamics.md}
+
+\section{Stationary Points and Equilibria (15 min)}
+
 \include{_physics/includes/stationary-points-equilibria.md}
-}
 
-\subsection{Kirchhoff Analogy (Optional 10 min)}
-
-\notes{
-\include{_physics/includes/kirchhoff-network-analogy.md}
-}
-
-\subsection{Wrap-up (5 min)}
+\section{Wrap-up (5 min)}
 
 \notes{
-- Constrained dynamics summary
-- Preview: Perturbations around equilibria
+- Constrained dynamics: $\dot{\boldsymbol{\theta}} = -G\boldsymbol{\theta} - \nu a$
+- All equilibria stable (timescale hierarchy)
+- Preview: Poisson brackets (Lecture 5)
 }
 
 \section{Problems and Exercises}
@@ -164,14 +152,16 @@ transition: None
 \section{Implementation Status}
 
 \notes{
-- [ ] Create lagrange-multipliers-review.md snippet
-- [ ] Verify and adapt action-potential-formulation.md
-- [ ] Extract relevant parts from emergent-observables.md
-- [ ] Create lagrange-multiplier-dynamics.md snippet
-- [ ] Adapt/rewrite stationary-points material
-- [ ] Review kirchhoff-network-analogy notebook
+- [x] Create lagrange-multipliers-review.md snippet (COMPLETED)
+- [x] Create lagrange-multiplier-dynamics.md snippet (COMPLETED) 
+- [x] Create stationary-points-equilibria.md snippet (COMPLETED)
+- [x] Core lecture content complete (~45 min of material)
+- [ ] Review action-potential-formulation.md (optional - may not be needed)
+- [ ] Review kirchhoff-network-analogy notebook (optional)
 - [ ] Create problem set 4
 - [ ] Create slide deck
+
+**Note**: Three comprehensive snippets provide complete coverage of constrained dynamics, Lagrange multipliers, and equilibrium structure. Optional action-potential and Kirchhoff analogy can be added later if desired.
 }
 
 \thanks
