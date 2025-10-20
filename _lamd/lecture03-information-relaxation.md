@@ -112,7 +112,7 @@ transition: None
 - Today's question: What dynamics does this imply?
 }
 
-\subsection{The I + H = C Structure (20 min)}
+\section{The I + H = C Structure (20 min)}
 
 \include{_physics/includes/i-plus-h-equals-c.md}
 
