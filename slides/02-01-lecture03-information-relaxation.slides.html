@@ -94,12 +94,6 @@
 </section>
 <section id="information-relaxation-to-mep-20-min" class="slide level2">
 <h2>Information Relaxation to MEP (20 min)</h2>
-</section>
-<section id="emergence-of-mep-15-min" class="slide level2">
-<h2>Emergence of MEP (15 min)</h2>
-</section>
-<section id="gradient-flow-15-min" class="slide level2">
-<h2>Gradient Flow (15 min)</h2>
 <!-- SECTION Planned Structure -->
 </section>
 <section id="planned-structure" class="slide level2">
@@ -107,6 +101,7 @@
 </section>
 <section id="review-5-min" class="slide level2">
 <h2>Review (5 min)</h2>
+<!-- SECTION The I + H = C Structure (20 min) -->
 </section>
 <section id="the-i-h-c-structure-20-min" class="slide level2">
 <h2>The I + H = C Structure (20 min)</h2>
@@ -344,35 +339,6 @@ H(\boldsymbol{\theta}) = \mathcal{A}(\boldsymbol{\theta}) - \boldsymbol{\theta}^
 <li>Lecture 8: Full GENERIC framework</li>
 </ul>
 <p><em>MEP + constraints = complete dynamics</em></p>
-<!-- SECTION Gradient Flow Implementation (15 min) -->
-</section>
-<section id="gradient-flow-implementation-15-min" class="slide level2">
-<h2>Gradient Flow Implementation (15 min)</h2>
-</section>
-<section id="gradient-ascent-on-entropy" class="slide level2">
-<h2>Gradient Ascent on Entropy</h2>
-<ul>
-<li>Entropy increases as uncertainty increases</li>
-<li>Gradient ascent finds maximum entropy states</li>
-<li>Constrained by uncertainty principle</li>
-</ul>
-</section>
-<section id="the-entropy-function" class="slide level2">
-<h2>The Entropy Function</h2>
-<ul>
-<li>Entropy of multivariate Gaussian: <span class="math display">\[S = \frac{n}{2}(1 + \ln(2\pi)) + \frac{1}{2}\ln\det(\mathbf{G}^{-1})\]</span></li>
-<li>Increases with determinant of covariance</li>
-<li>Constrained by uncertainty principle</li>
-</ul>
-</section>
-<section id="implementation" class="slide level2">
-<h2>Implementation</h2>
-<ul>
-<li>Decompose precision matrix: <span class="math inline">\(\mathbf{G} = \mathbf{O} \mathbf{D} \mathbf{O}^T\)</span></li>
-<li>Gradient of entropy: <span class="math inline">\(\frac{\partial S}{\partial d_i} = -\frac{1}{2d_i}\)</span></li>
-<li>Project gradient to respect constraints</li>
-</ul>
-<p>{To }</p>
 <!-- SECTION Wrap-up (5 min) -->
 </section>
 <section id="wrap-up-5-min" class="slide level2">

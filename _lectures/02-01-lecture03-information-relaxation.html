@@ -42,11 +42,7 @@ categories:
 <p><strong>Snippet: <code>i-plus-h-equals-c.md</code></strong> - <strong>Status:</strong> ✅ CREATED - <strong>Location:</strong> <code>~/lawrennd/snippets/_physics/includes/i-plus-h-equals-c.md</code> - <strong>Content:</strong> - Multi-information <span class="math inline">\(I\)</span> definition - Joint entropy <span class="math inline">\(H\)</span> definition - Information action principle <span class="math inline">\(I + H = C\)</span> - Physical analogy to classical mechanics - Information relaxation principle - Connection to marginal entropy conservation</p>
 <h2 id="information-relaxation-to-mep-20-min">Information Relaxation to MEP (20 min)</h2>
 <p><strong>Snippet: <code>information-relaxation-mep.md</code></strong> - <strong>Status:</strong> ✅ CREATED - <strong>Location:</strong> <code>~/lawrennd/snippets/_physics/includes/information-relaxation-mep.md</code> - <strong>Content:</strong> - Second law implies <span class="math inline">\(\dot{H} \geq 0\)</span>, therefore <span class="math inline">\(\dot{I} \leq 0\)</span> - Maximum entropy production principle - Derivation of <span class="math inline">\(\dot{\boldsymbol{\theta}} = -G(\boldsymbol{\theta})\boldsymbol{\theta}\)</span> - Why this is the unique dynamics - Physical intuition and gas diffusion analogy - Preview of constrained dynamics</p>
-<h2 id="emergence-of-mep-15-min">Emergence of MEP (15 min)</h2>
-<p><strong>Snippet: <code>entropy-gradient-ascent.md</code></strong> - <strong>Status:</strong> ✅ EXISTS with significant rewrite needed - <strong>Location:</strong> <code>~/lawrennd/snippets/_information-game/includes/entropy-gradient-ascent.md</code> - <strong>Quality:</strong> Has entropy maximization content - <strong>Needs:</strong> - Focus on why entropy increases - <strong>CRITICAL MISSING:</strong> Add conservation constraint - Connect to <span class="math inline">\(I + H = C\)</span> - Gradient ascent as consequence not assumption - <strong>Rewrite needed:</strong> SIGNIFICANT - add conservation, tie to axioms</p>
-<p><strong>Snippet: <code>jaynes-maximum-entropy.md</code></strong> - <strong>Status:</strong> ✅ EXISTS, needs assimilation - <strong>Location:</strong> <code>~/lawrennd/snippets/_physics/includes/jaynes-maximum-entropy.md</code> - <strong>Quality:</strong> Excellent historical context - <strong>Usage:</strong> Show how TIG generalizes Jaynes’s principle - <strong>Rewrite needed:</strong> MINOR - context/positioning only</p>
-<h2 id="gradient-flow-15-min">Gradient Flow (15 min)</h2>
-<p><strong>Snippet: <code>gradient-flow-least-action.md</code></strong> - <strong>Status:</strong> ✅ EXISTS with rewrite needed - <strong>Location:</strong> <code>~/lawrennd/snippets/_information-game/includes/gradient-flow-least-action.md</code> - <strong>Quality:</strong> Good visualization and code - <strong>Needs:</strong> - Emphasize constrained gradient flow - Add conservation constraint to dynamics - Connect to information-theoretic action - <strong>Rewrite needed:</strong> MODERATE - add conservation emphasis</p>
+<p><strong>Note:</strong> The two core snippets (i-plus-h-equals-c.md and information-relaxation-mep.md) provide complete coverage of Lecture 3 content, including: - Conceptual framework for I + H = C - Visualization of binary variable relaxation - Derivation of MEP dynamics - Physical intuition and examples</p>
 <h1 id="planned-structure">Planned Structure</h1>
 <h2 id="review-5-min">Review (5 min)</h2>
 <ul>
@@ -54,7 +50,7 @@ categories:
 <li>Conservation: <span class="math inline">\(\sum h_i = C\)</span></li>
 <li>Today’s question: What dynamics does this imply?</li>
 </ul>
-<h2 id="the-i-h-c-structure-20-min">The I + H = C Structure (20 min)</h2>
+<h1 id="the-i-h-c-structure-20-min">The I + H = C Structure (20 min)</h1>
 <h2 id="the-i-h-c-structure">The I + H = C Structure</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_physics/includes/i-plus-h-equals-c.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_physics/includes/i-plus-h-equals-c.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -212,75 +208,7 @@ H(\boldsymbol{\theta}) = \mathcal{A}(\boldsymbol{\theta}) - \boldsymbol{\theta}^
 \dot{\boldsymbol{\theta}} = -G(\boldsymbol{\theta})(\boldsymbol{\theta} + \lambda \nabla C),
 \]</span> where <span class="math inline">\(\lambda\)</span> is a Lagrange multiplier and <span class="math inline">\(C\)</span> represents the constraint.</p>
 <p>The key insight remains: <strong>information relaxation through maximum entropy production</strong> is the fundamental principle. Constraints modify the path, but not the underlying logic.</p>
-<p>}</p>
-<h2 id="gradient-flow-implementation-15-min">Gradient Flow Implementation (15 min)</h2>
-<h2 id="gradient-ascent-on-entropy">Gradient Ascent on Entropy</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_information-game/includes/entropy-gradient-ascent.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_information-game/includes/entropy-gradient-ascent.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>Having explored minimal entropy states constrained by the uncertainty principle, we now examine how to perform gradient ascent on the entropy of these states. This reveals a beautiful connection between quantum uncertainty and classical information geometry.</p>
-<p>Rather than working with density matrices directly, we can reformulate our problem in terms of a classical multivariate Gaussian distribution:</p>
-<p><span class="math display">\[p(\mathbf{R}) = \frac{1}{Z} \exp\left(-\mathbf{R}^T \cdot \mathbf{G} \cdot \mathbf{R}\right)\]</span></p>
-<p>Where: - <span class="math inline">\(\mathbf{R}\)</span> represents our phase space variables <span class="math inline">\((x_1,...,x_n,p_1,...,p_n)\)</span> - <span class="math inline">\(\mathbf{G}\)</span> is the precision matrix (inverse covariance) - <span class="math inline">\(Z\)</span> is a normalization constant: <span class="math inline">\(Z = \sqrt{(2\pi)^{2n}/\det(\mathbf{G})}\)</span></p>
-<p>This is simply a multivariate Gaussian with mean zero and precision matrix <span class="math inline">\(\mathbf{G}\)</span>.</p>
-<p>The differential entropy of this distribution has a simple form:</p>
-<p><span class="math display">\[S = \frac{n}{2}(1 + \ln(2\pi)) + \frac{1}{2}\ln\det(\mathbf{G}^{-1})\]</span></p>
-<p>Where: - <span class="math inline">\(n\)</span> is the number of position-momentum pairs - <span class="math inline">\(\mathbf{G}^{-1}\)</span> is the covariance matrix</p>
-<p>This is the standard entropy formula for a multivariate Gaussian, and it increases as the determinant of the covariance matrix increases (as the distribution spreads out).</p>
-<p>The quantum uncertainty principle translates to a specific constraint on our classical covariance matrix:</p>
-<p><span class="math display">\[\mathbf{V} + i\frac{\hbar}{2}\mathbf{\Omega} \geq 0\]</span></p>
-<p>Where <span class="math inline">\(\mathbf{\Omega}\)</span> is the symplectic form:</p>
-<p><span class="math display">\[\mathbf{\Omega} = \begin{pmatrix} 0 &amp; \mathbf{I} \\ -\mathbf{I} &amp; 0 \end{pmatrix}\]</span></p>
-<p>In practical terms, for any conjugate pair of variables <span class="math inline">\((x_i, p_i)\)</span>, the corresponding submatrix of <span class="math inline">\(\mathbf{V}\)</span> must satisfy:</p>
-<p><span class="math display">\[\det(\mathbf{V}_{ij}) \geq \left(\frac{\hbar}{2}\right)^2\]</span></p>
-<p>{To</p>
-<h2 id="gradient-flow-and-least-action-principles">Gradient Flow and Least Action Principles</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_information-game/includes/gradient-flow-least-action.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_information-game/includes/gradient-flow-least-action.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>The steepest ascent dynamics in our system naturally connect to least action principles in physics. We can demonstrate this connection through visualizing how our uncertainty ellipses evolve along paths of steepest entropy increase.</p>
-<p>For our entropy game, we can define an information-theoretic action, <span class="math display">\[
-\mathcal{A}[\gamma] = \int_0^T \left(\dot{\boldsymbol{\theta}} \cdot \nabla_{\boldsymbol{\theta}} S - \frac{1}{2}\|\dot{\boldsymbol{\theta}}\|^2\right) \text{d}t
-\]</span> where <span class="math inline">\(\gamma\)</span> is a path through parameter space. The first term represents the rate of entropy production along the path (<span class="math inline">\(\frac{\text{d}S}{\text{d}\theta} \cdot \frac{\text{d}\theta}{\text{d}t}\)</span>), while the second term constrains how quickly parameters can change. Maximizing this action leads naturally to gradient flow dynamics, where changes in parameters follow the entropy gradient: <span class="math display">\[
-\dot{\boldsymbol{\theta}} = \nabla_{\boldsymbol{\theta}} S
-\]</span></p>
-<p>This is exactly what our steepest ascent dynamics implement: the system follows the entropy gradient, with the learning rate controlling the size of parameter updates. As the system evolves, it naturally creates information reservoirs in directions where the gradient is small but non-zero.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize system with 2 position-momentum pairs</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>n_pairs <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>G_init <span class="op">=</span> initialize_multidimensional_state(n_pairs, squeeze_factors<span class="op">=</span>[<span class="fl">0.1</span>, <span class="fl">0.2</span>])</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate path</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>path_history, entropy_production <span class="op">=</span> simulate_action_path(G_init)</span></code></pre></div>
-<div class="figure">
-<div id="gradient-flow-least-action-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/tig/./slides/diagrams//information-game/gradient-flow-least-action.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="gradient-flow-least-action-magnify" class="magnify" onclick="magnifyFigure(&#39;gradient-flow-least-action&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="gradient-flow-least-action-caption" class="caption-frame">
-<p>Figure: Visualization of the gradient flow through parameter space.</p>
-</div>
-</div>
-<div class="figure">
-<div id="gradient-flow-least-action-uncertainty-ellipses-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/tig/./slides/diagrams//information-game/gradient-flow-least-action-uncertainty-ellipses.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="gradient-flow-least-action-uncertainty-ellipses-magnify" class="magnify" onclick="magnifyFigure(&#39;gradient-flow-least-action-uncertainty-ellipses&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="gradient-flow-least-action-uncertainty-ellipses-caption" class="caption-frame">
-<p>Figure: Visualization of the corresponding evolution of uncertainty ellipses (right). The dashed lines show minimum uncertainty bounds.</p>
-</div>
-</div>
-<p>The action integral governing this evolution can be written: <span class="math display">\[
-\mathcal{A}[\gamma] = \int_0^T \left(\dot{\boldsymbol{\theta}} \cdot \nabla_{\boldsymbol{\theta}} S - \frac{1}{2}\dot{\boldsymbol{\theta}}^\top G \dot{\boldsymbol{\theta}}\right) \text{d}t
-\]</span> where <span class="math inline">\(G\)</span> is the Fisher information metric. The path follows steepest entropy increase while respecting quantum uncertainty constraints, naturally transitioning from quantum-like to classical-like behavior.</p>
-<h2 id="wrap-up-5-min">Wrap-up (5 min)</h2>
+<h1 id="wrap-up-5-min">Wrap-up (5 min)</h1>
 <ul>
 <li>Information relaxation as fundamental principle</li>
 <li>MEP gives unique dynamics: <span class="math inline">\(\dot{\boldsymbol{\theta}} = -G\boldsymbol{\theta}\)</span></li>
@@ -294,19 +222,16 @@ H(\boldsymbol{\theta}) = \mathcal{A}(\boldsymbol{\theta}) - \boldsymbol{\theta}^
 Create i-plus-h-equals-c.md snippet (COMPLETED)</li>
 <li><input type="checkbox" disabled="" checked="" />
 Create information-relaxation-mep.md snippet (COMPLETED)</li>
-<li><input type="checkbox" disabled="" />
-Rewrite entropy-gradient-ascent.md with conservation (NEEDS WORK)</li>
-<li><input type="checkbox" disabled="" />
-Adapt gradient-flow-least-action.md for TIG context (NEEDS WORK)</li>
-<li><input type="checkbox" disabled="" />
-Position jaynes-maximum-entropy.md for context (OPTIONAL)</li>
+<li><input type="checkbox" disabled="" checked="" />
+Core lecture content complete (~45 min of material)</li>
 <li><input type="checkbox" disabled="" />
 Create problem set 3</li>
 <li><input type="checkbox" disabled="" />
 Create slide deck</li>
 <li><input type="checkbox" disabled="" />
-Test code examples with conservation constraint</li>
+Test/run visualisation code (binary relaxation example)</li>
 </ul>
+<p><strong>Note</strong>: Removed quantum-specific gradient flow snippets (entropy-gradient-ascent, gradient-flow-least-action) as they don’t fit TIG context. The i-plus-h-equals-c snippet already includes a suitable visualization of information relaxation.</p>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
 <ul>
