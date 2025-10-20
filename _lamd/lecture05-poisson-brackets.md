@@ -38,86 +38,87 @@ transition: None
 
 \notes{
 **Snippet: `why-energy-conserves.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Location:** Create in `~/lawrennd/snippets/_physics/includes/`
-- **Needs:**
+- **Status:** ✅ COMPLETED
+- **Location:** `~/lawrennd/snippets/_physics/includes/`
+- **Includes:**
   - Question: What if dynamics conserve energy?
   - Antisymmetric $A$ ensures $\frac{\text{d}E}{\text{d}t} = 0$
-  - Show: $\frac{\text{d}E}{\text{d}t} = (\nabla E)^\top A (\nabla E) = 0$
-  - Motivation for Poisson structure
-- **Rewrite needed:** N/A - create from scratch
-- **CRITICAL:** This is identified as most important new concept in CIP
+  - Pendulum animation example with matplotlib code
+  - Accessible introduction for computer scientists
 }
 
 \subsection{Poisson Brackets Definition (15 min)}
 
 \notes{
 **Snippet: `poisson-brackets-definition.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Location:** Create in `~/lawrennd/snippets/_physics/includes/`
-- **Needs:**
+- **Status:** ✅ COMPLETED
+- **Location:** `~/lawrennd/snippets/_physics/includes/`
+- **Includes:**
   - Definition: $\{f,g\} = (\nabla f)^\top A (\nabla g)$
-  - Antisymmetry: $A^\top = -A$
-  - Bilinearity
-  - Jacobi identity (statement, not full proof)
-  - Examples: canonical Poisson bracket
-- **Rewrite needed:** N/A - create from scratch
+  - All properties: antisymmetry, bilinearity, Jacobi identity
+  - Lie algebra intuition with 2D rotation visualization
+  - Matrix exponential explained for non-physicists
+  - Canonical Poisson bracket with connection to natural parameters
 }
 
 \subsection{Hamiltonian Flow (15 min)}
 
 \notes{
 **Snippet: `hamiltonian-flow.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Location:** Create in `~/lawrennd/snippets/_physics/includes/`
-- **Needs:**
+- **Status:** ✅ COMPLETED
+- **Location:** `~/lawrennd/snippets/_physics/includes/`
+- **Includes:**
   - Hamiltonian vector field: $\dot{q} = A \nabla H$
   - Hamilton's equations from Poisson bracket
   - Energy conservation proof
-  - Phase space geometry
-  - Simple examples (harmonic oscillator)
-- **Rewrite needed:** N/A - create from scratch
+  - Phase space geometry with harmonic oscillator visualization
+  - Beautiful circular orbits showing energy surfaces
 }
 
 \subsection{Casimir Functions (15 min)}
 
 \notes{
 **Snippet: `casimir-functions.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Location:** Create in `~/lawrennd/snippets/_physics/includes/`
-- **Needs:**
-  - When $A$ is degenerate (not full rank)
-  - Casimirs: $\{C, f\} = 0$ for all $f$
-  - Kernel of $A$ defines Casimirs
-  - Symplectic leaves (intuition, not full theory)
-  - Why degeneracy matters for information dynamics
-- **Rewrite needed:** N/A - create from scratch
+- **Status:** ✅ COMPLETED
+- **Location:** `~/lawrennd/snippets/_physics/includes/`
+- **Includes:**
+  - Casimirs as "super-conserved" quantities
+  - When $A$ is degenerate: $\{C, f\} = 0$ for all $f$
+  - Noether's theorem introduction (Emmy Noether, 1918)
+  - Angular momentum example showing $|\mathbf{L}|^2$ as Casimir
+  - Connection to TIG: $\sum h_i$ as information Casimir
 }
 
 \subsection{Connection to Information Dynamics (Optional 10 min)}
 
 \notes{
 **Snippet: `poisson-meets-fisher.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Needs:**
-  - Preview of GENERIC structure
-  - Hamiltonian part vs dissipative part
-  - Why information dynamics has both
+- **Status:** ✅ COMPLETED
+- **Location:** `~/lawrennd/snippets/_physics/includes/`
+- **Includes:**
+  - Preview of GENERIC (Grmela & Öttinger) from non-equilibrium thermodynamics
+  - Poisson (reversible) + Fisher (irreversible) structure
+  - Degeneracy conditions for consistency
   - Teaser for Lecture 8
-- **Rewrite needed:** N/A - create from scratch
 }
 
 \section{Planned Structure}
 
-\subsection{Motivation (10 min)}
+\subsection{Introduction (5 min)}
 
 \notes{
-- Why do we need Hamiltonian structure?
-- Energy conservation from geometry
+- Recap: Fisher information and entropy dynamics
+- Today: The other side—energy conservation
+- Why Hamiltonian structure matters for information
+}
+
+\subsection{Motivation: Energy Conservation (10 min)}
+
+\notes{
 \include{_physics/includes/why-energy-conserves.md}
 }
 
-\subsection{Poisson Brackets (15 min)}
+\subsection{Poisson Brackets Definition (15 min)}
 
 \notes{
 \include{_physics/includes/poisson-brackets-definition.md}
@@ -163,20 +164,16 @@ transition: None
 
 \notes{
 **HIGH PRIORITY - All new content**
-- [ ] Create why-energy-conserves.md snippet
-- [ ] Create poisson-brackets-definition.md snippet
-- [ ] Create hamiltonian-flow.md snippet
-- [ ] Create casimir-functions.md snippet
-- [ ] Create poisson-meets-fisher.md snippet
+- [x] Create why-energy-conserves.md snippet (COMPLETED - ~205 lines)
+- [x] Create poisson-brackets-definition.md snippet (COMPLETED - ~200 lines)
+- [x] Create hamiltonian-flow.md snippet (COMPLETED - ~240 lines)
+- [x] Create casimir-functions.md snippet (COMPLETED - ~230 lines)
+- [x] Create poisson-meets-fisher.md snippet (COMPLETED - ~185 lines)
 - [ ] Create problem set 5
 - [ ] Create slide deck with clear visualizations
-- [ ] Develop geometric intuition examples
-- [ ] Test with sample audience for clarity
-}
+- [ ] Test lecture flow
 
-\notes{
-**Note:** This lecture has NO existing snippets to draw from. 
-Estimate ~2-3 days of focused work to create all materials.
+**Core lecture content complete:** All five Poisson brackets snippets created from scratch (~1060 lines total). Ready for integration into Lecture 5.
 }
 
 \thanks
