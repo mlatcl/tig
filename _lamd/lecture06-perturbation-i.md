@@ -1,12 +1,12 @@
 ---
-title: "Lecture 6: Perturbation Analysis I - Modified Laplace Expansion"
+title: "Lecture 6: Perturbation Analysis - Linearisation Around Equilibrium"
 week: 3
 session: 2
 featured_image: slides/diagrams/tig-perturbation.svg
 abstract: >
-  Perturbation analysis around equilibrium points. Covers modified Laplace
-  expansion, Taylor series to third order, and on-manifold reduction
-  techniques. Most mathematically dense lecture in the course.
+  Standard perturbation analysis around equilibrium points in the Gaussian regime.
+  Covers linearization of constrained dynamics, computing the linearization matrix M,
+  and geometric interpretation. Builds foundation for symmetric/antisymmetric split.
 author:
 - given: Neil
   family: Lawrence
@@ -21,86 +21,60 @@ transition: None
 \notes{**Duration:** 50 minutes
 
 **Prerequisites:**
-- Lectures 1-5
-- Taylor series expansion (will review)
+- Lectures 1-5 (especially L4 on constrained dynamics)
+- Basic Taylor series (will review briefly)
 
 **Learning Objectives:**
-1. Understand perturbation around equilibrium $\boldsymbol{\theta}^\ast$
-2. Master modified Laplace expansion technique
-3. Learn on-manifold reduction
-4. Handle third-order terms in tensor notation
+1. Understand why Gaussian regime is natural (callback to L4)
+2. Master standard linearization: $\dot{q} = Mq$
+3. Compute linearization matrix $M$ explicitly
+4. Interpret geometric meaning of $M$ components
+5. See connection to Laplace approximation (sidebar)
 }
 
-\notes{**WARNING:** Most mathematically dense lecture. Go slowly!}
 
 \section{Required Snippets}
 
-\subsection{Taylor Expansion Review (10 min)}
+\subsection{Why Gaussian Regime? (10 min)}
 
 \notes{
-**Snippet: `taylor-expansion-review.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Location:** Create in `~/lawrennd/snippets/_maths/includes/`
-- **Needs:**
-  - Expanding $F(\boldsymbol{\theta}^\ast + q)$ to third order
-  - Scalar function: $F(x+h) = F(x) + F'(x)h + \frac{1}{2}F''(x)h^2 + ...$
-  - Vector function: Gradient, Hessian, third-order tensor
-  - Tensor notation: $T[q,q]$ means $\sum_{jk} T_{ijk} q_j q_k$
-  - Index notation vs matrix notation
-- **Rewrite needed:** N/A - create from scratch
+**Snippet: `gaussian-regime-motivation.md`**
+- **Status:** ✅ CREATED (2025-10-20)
+- **Location:** `~/lawrennd/snippets/_physics/includes/gaussian-regime-motivation.md`
+- **Content:**
+  - Callback to L4: Computing $\nabla h_i$ is exponentially hard
+  - Gaussian regime: Closed-form marginal entropies
+  - Physical motivation: Maximum entropy distributions
+  - Laplace approximation: Why perturbation analysis works
+  - **Key point:** Laplace is conceptual foundation, not main technique
 }
 
-\subsection{Modified Laplace Expansion (20 min)}
+\subsection{Standard Linearisation (25 min)}
 
 \notes{
-**Snippet: `modified-laplace-expansion.md`**
-- **Status:** ⚠️ Possible implicit coverage
-- **Source check:** `~/lawrennd/snippets/_information-game/includes/jaynesian-derivation-minimal-entropy.md`
-- **Likely status:** SIGNIFICANT REWRITE NEEDED
-- **Needs:**
-  - Standard Laplace expansion review
-  - Modification for constrained manifold
-  - Handling constraint in expansion
-  - Connection to equilibrium points
-  - Why this differs from standard perturbation theory
-- **Rewrite needed:** Likely full rewrite from TIG paper
+**Snippet: `linearisation-around-equilibrium.md`**
+- **Status:** ✅ CREATED (2025-10-20)
+- **Location:** `~/lawrennd/snippets/_physics/includes/linearisation-around-equilibrium.md`
+- **Content:**
+  - Perturb: $\boldsymbol{\theta} = \boldsymbol{\theta}^\ast + q$
+  - Linearise constrained dynamics to first order
+  - Compute linearisation matrix: $M = -G - \nu^\ast A + \frac{aa^\top G}{\|a\|^2}$
+  - Geometric interpretation of three terms
+  - Result: $\dot{q} = Mq$ (standard linear system)
 }
 
-\notes{
-**Snippet: `latent-phase-constraints.md`**
-- **Status:** ✅ EXISTS but unclear relevance
-- **Location:** `~/lawrennd/snippets/_information-game/includes/latent-phase-constraints.md`
-- **Usage:** May have perturbation ideas, needs review
-- **Rewrite needed:** Review first, likely SIGNIFICANT
-}
-
-\subsection{On-Manifold Reduction (15 min)}
+\subsection{Worked Example (15 min)}
 
 \notes{
-**Snippet: `on-manifold-reduction.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Source reference:** TIG paper perturbation section
-- **Needs:**
-  - Projection onto constraint manifold
-  - Tangent space coordinates
-  - Reduced dynamics on manifold
-  - Connection to $\Pi_\parallel$ from Lecture 4
-  - Why manifold geometry matters
-- **Rewrite needed:** N/A - create from scratch
-}
-
-\subsection{Third-Order Terms (10 min)}
-
-\notes{
-**Snippet: `third-order-tensor-notation.md`**
-- **Status:** ❌ NEEDS CREATION  
-- **Location:** Create in `~/lawrennd/snippets/_maths/includes/`
-- **Needs:**
-  - Tensor contraction notation
-  - Symmetry properties
-  - Computational handling
-  - When to keep vs neglect
-- **Rewrite needed:** N/A - create from scratch
+**Snippet: `perturbation-2d-example.md`**
+- **Status:** ✅ CREATED (2025-10-20)
+- **Location:** `~/lawrennd/snippets/_physics/includes/perturbation-2d-example.md`
+- **Content:**
+  - Two binary variables (discrete, fully computable example)
+  - Finding equilibria (independence at maximum entropy)
+  - Computing Fisher information matrix explicitly
+  - What $M$ matrix tells us (structure and interpretation)
+  - Physical intuition: Tension between entropy and conservation
 }
 
 \section{Planned Structure}
@@ -108,66 +82,67 @@ transition: None
 \subsection{Review and Motivation (5 min)}
 
 \notes{
-- Equilibria from Lecture 4
-- Why study perturbations?
-- Local vs global dynamics
+- Equilibria from Lecture 4: $G\boldsymbol{\theta} + \nu a = 0$
+- Challenge: Computing $\nu(t)$ in general is exponentially hard
+- Why Gaussian regime is special (computationally and physically)
 }
 
-\subsection{Taylor Expansion Primer (10 min)}
+\section{Why Gaussian Regime? (10 min)}
+
+\include{_physics/includes/gaussian-regime-motivation.md}
+
+\section{Standard Linearisation (25 min)}
+
+\include{_physics/includes/linearisation-around-equilibrium.md}
+
+\section{Worked Example (12 min)}
+
+\include{_physics/includes/perturbation-2d-example.md}
+
+\section{Wrap-up and Preview (3 min)}
 
 \notes{
-\include{_maths/includes/taylor-expansion-review.md}
-\include{_maths/includes/third-order-tensor-notation.md}
-}
-
-\subsection{Modified Laplace Expansion (20 min)}
-
-\notes{
-\include{_physics/includes/modified-laplace-expansion.md}
-}
-
-\subsection{On-Manifold Reduction (15 min)}
-
-\notes{
-\include{_physics/includes/on-manifold-reduction.md}
-}
-
-\subsection{Summary and Preview (5 min)}
-
-\notes{
-- What we can now compute
-- Preview: Symmetric/antisymmetric split (Lecture 7)
+- We have linearised dynamics: $\dot{q} = Mq$
+- Matrix $M$ includes entropy gradient, constraint curvature, projection
+- **Next lecture:** Decompose $M = S + A$
+  - Antisymmetric part: Conservative flow
+  - Symmetric part: Dissipative flow
+  - This emerges naturally from the geometry!
 }
 
 \section{Problems and Exercises}
 
 \notes{
 **Problem Set 6:** ⚠️ NEEDS CREATION
-- Taylor expand simple functions to third order
-- Practice tensor notation
-- Compute modified Laplace expansion for 2D example
-- Project dynamics onto manifold
-**Note:** Keep problems concrete and computational
+- Verify marginal entropy formulas for binary variables
+- Compute Fisher information matrix for 2D binary system
+- Compute constraint gradient $a$ for the example
+- Find equilibria for simple examples
+- Compute linearisation matrix $M$ explicitly
+- Analyze eigenvalues and stability
+- Relate to Laplace approximation
+**Note:** Focus on explicit, computable examples (both discrete and Gaussian)
 }
 
 \section{Implementation Status}
 
 \notes{
-**HIGH PRIORITY - Mostly new content**
-- [ ] Create taylor-expansion-review.md snippet
-- [ ] Create third-order-tensor-notation.md snippet
-- [ ] Review jaynesian-derivation and latent-phase-constraints snippets
-- [ ] Create/rewrite modified-laplace-expansion.md snippet
-- [ ] Create on-manifold-reduction.md snippet
+- [x] Create gaussian-regime-motivation.md snippet (COMPLETED 2025-10-20)
+- [x] Create linearisation-around-equilibrium.md snippet (COMPLETED 2025-10-20)
+- [x] Create perturbation-2d-example.md snippet (COMPLETED 2025-10-20)
+- [x] Core lecture content complete (~50 min material)
 - [ ] Create problem set 6 with worked examples
-- [ ] Create slide deck with clear notation
-- [ ] Develop step-by-step computational examples
-- [ ] Test for clarity (this is the hard lecture!)
+- [ ] Create slide deck
+
+**Simplified approach:** Standard perturbation analysis instead of "modified Laplace expansion"
+- Cleaner story: Gaussian regime → linearisation → matrix M
+- Laplace approximation as conceptual sidebar, not center stage
+- Connects naturally to L4 (computational challenge) and L7 (M = S + A split)
 }
 
 \notes{
-**Estimated effort:** ~3-4 days
-**Challenge:** Making dense mathematics accessible
+**Status:** Core content complete (~2 days actual vs 3-4 days estimated)
+**Key decision:** Simplified from original plan—much cleaner!
 }
 
 \thanks
