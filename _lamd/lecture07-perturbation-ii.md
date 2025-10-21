@@ -38,44 +38,43 @@ transition: None
 
 \notes{
 **Snippet: `symmetric-antisymmetric-decomposition.md`**
-- **Status:** ⚠️ May exist in _maths
-- **Source check:** `~/lawrennd/snippets/_maths/includes/`
-- **Needs:**
-  - Any matrix: $M = S + A$ where $S^\top = S$, $A^\top = -A$
-  - Unique decomposition: $S = \frac{1}{2}(M + M^\top)$, $A = \frac{1}{2}(M - M^\top)$
-  - Physical interpretation
-  - Properties of each part
-- **Rewrite needed:** Check if exists, otherwise CREATE
+- **Status:** ✅ CREATED (2025-10-21)
+- **Location:** `~/lawrennd/snippets/_maths/includes/symmetric-antisymmetric-decomposition.md`
+- **Content:**
+  - Unique decomposition: $M = S + A$
+  - Formulas: $S = \frac{1}{2}(M + M^\top)$, $A = \frac{1}{2}(M - M^\top)$
+  - Physical interpretation (dissipative vs conservative)
+  - Frobenius orthogonality
+  - 2D worked example
 }
 
 \subsection{Second-Order Dynamics (20 min)}
 
 \notes{
 **Snippet: `second-order-information-dynamics.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Source reference:** TIG paper perturbation results
-- **Needs:**
-  - Linearized dynamics: $\dot{q} = M q$ where $q = \boldsymbol{\theta} - \boldsymbol{\theta}^\ast$
-  - Matrix $M$ from perturbation expansion
-  - How $M$ encodes second-order behavior
-  - Stability analysis preview
-- **Rewrite needed:** N/A - create from scratch
+- **Status:** ✅ CREATED (2025-10-21)
+- **Location:** `~/lawrennd/snippets/_physics/includes/second-order-information-dynamics.md`
+- **Content:**
+  - Perturbation expansion: $F = \Pi_\parallel S q + \mathcal{B}(q) + O(\|q\|^3)$
+  - Leading order is purely symmetric (dissipative)
+  - Entropy production: $\dot{H} \approx -q^\top S q$
+  - Connection to Gaussian/Laplace regime
+  - Stability from eigenvalues of $\Pi_\parallel S \Pi_\parallel$
 }
 
 \subsection{The Split and Its Meaning (20 min)}
 
 \notes{
 **Snippet: `conservative-dissipative-emergence.md`**
-- **Status:** ❌ NEEDS CREATION
-- **Source reference:** TIG paper key result
-- **Needs:**
-  - $M = S + A$ decomposition
-  - $A$ part: Hamiltonian/conservative flow
-  - $S$ part: Gradient/dissipative flow
-  - Why this emerges from information geometry
-  - Connection to Poisson brackets (Lecture 5)
-  - Preview of GENERIC (Lecture 8)
-- **Rewrite needed:** N/A - create from scratch
+- **Status:** ✅ CREATED (2025-10-21)
+- **Location:** `~/lawrennd/snippets/_physics/includes/conservative-dissipative-emergence.md`
+- **Content:**
+  - Third-order corrections: $\mathcal{B}(q)$ from cumulants and curvature
+  - Jacobian creates antisymmetric component
+  - GENERIC decomposition: $\nabla F = \Pi_\parallel S \Pi_\parallel + A$
+  - Physical meaning: thermodynamics + mechanics
+  - Connection to Poisson brackets
+  - Why this emerges (not imposed)
 }
 
 \notes{
@@ -153,20 +152,17 @@ transition: None
 \section{Implementation Status}
 
 \notes{
-**MEDIUM-HIGH PRIORITY**
-- [ ] Check for symmetric-antisymmetric-decomposition.md or create
-- [ ] Create second-order-information-dynamics.md snippet
-- [ ] Create conservative-dissipative-emergence.md snippet
-- [ ] Review intelligence-thermodynamics-connection.md for ideas
-- [ ] Create stability-from-eigenvalues.md snippet (optional)
+**STATUS:** Core content complete!
+- [x] Create symmetric-antisymmetric-decomposition.md snippet (COMPLETED 2025-10-21)
+- [x] Create second-order-information-dynamics.md snippet (COMPLETED 2025-10-21)
+- [x] Create conservative-dissipative-emergence.md snippet (COMPLETED 2025-10-21)
+- [x] Core lecture content complete (~45 min material)
+- [ ] Review intelligence-thermodynamics-connection.md for additional ideas
+- [ ] Create stability-from-eigenvalues.md snippet (optional, for deeper dive)
 - [ ] Create problem set 7
-- [ ] Create slide deck emphasizing the split
-- [ ] Develop physical intuition examples
-}
+- [ ] Create slide deck
 
-\notes{
-**Estimated effort:** ~2-3 days
-**Key challenge:** Connecting abstract decomposition to physical meaning
+**Key achievement:** Successfully explained how GENERIC structure emerges from information geometry, connecting second-order (Gaussian/dissipative) to third-order (non-Gaussian/conservative) dynamics.
 }
 
 \thanks
