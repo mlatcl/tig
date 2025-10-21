@@ -37,6 +37,64 @@ categories:
 <p><strong>Duration:</strong> 50 minutes</p>
 <p><strong>Prerequisites:</strong> - Lecture 6 (perturbation techniques) - Lecture 5 (Poisson brackets)</p>
 <p><strong>Learning Objectives:</strong> 1. Understand second-order dynamics near equilibrium 2. Master symmetric/antisymmetric decomposition 3. See how conservative vs dissipative parts emerge 4. Preview GENERIC structure (Lecture 8)</p>
+<h1 id="from-equilibrium-to-general-points">From Equilibrium to General Points</h1>
+<h2 id="linearisation-beyond-equilibrium">Linearisation: Beyond Equilibrium</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_physics/includes/linearisation-general-vs-equilibrium.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_physics/includes/linearisation-general-vs-equilibrium.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>In Lecture 6, we learned how to linearise the constrained dynamics around an equilibrium point <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> where <span class="math inline">\(\dot{\boldsymbol{\theta}}^\ast = 0\)</span>. This gave us clean dynamics for perturbations: <span class="math display">\[
+\dot{q} = Mq, \quad q = \boldsymbol{\theta} - \boldsymbol{\theta}^\ast
+\]</span> where <span class="math inline">\(M\)</span> is the linearisation matrix (Jacobian of the dynamics at <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span>).</p>
+<p>But what if we want to understand the flow structure at a point where the system is <em>not</em> in equilibrium? Can we still linearise? And if so, what changes?</p>
+<p><strong>Why this matters:</strong> For constrained maximum entropy dynamics, entropy is a <em>concave</em> function. This means there is typically only <em>one</em> equilibrium point—the global maximum entropy state satisfying the constraint. This is the END point where the system eventually settles. But to understand how the system flows toward that equilibrium, we need to analyse the dynamics at <em>non-equilibrium points</em> along the trajectory. Almost all of the parameter space is non-equilibrium.</p>
+<h2 id="general-linearisation-at-any-point">General Linearisation at Any Point</h2>
+<p>It turns out that we can linearise around <em>any point</em> <span class="math inline">\(\boldsymbol{\theta}_0\)</span> on the constraint manifold, whether it’s an equilibrium or not.</p>
+<p>Recall the general constrained dynamics <span class="math display">\[
+\dot{\boldsymbol{\theta}} = F(\boldsymbol{\theta}) = -G(\boldsymbol{\theta})\boldsymbol{\theta} - \nu(\boldsymbol{\theta}) a(\boldsymbol{\theta}).
+\]</span> For a small deviation <span class="math inline">\(\delta\boldsymbol{\theta} = \boldsymbol{\theta} - \boldsymbol{\theta}_0\)</span> from some reference point <span class="math inline">\(\boldsymbol{\theta}_0\)</span>, Taylor expansion gives <span class="math display">\[
+\dot{\boldsymbol{\theta}} = F(\boldsymbol{\theta}_0) + \frac{\partial F}{\partial \boldsymbol{\theta}}\bigg|_{\boldsymbol{\theta}_0} \delta\boldsymbol{\theta} + O(\|\delta\boldsymbol{\theta}\|^2).
+\]</span> Define the Jacobian matrix <span class="math display">\[
+M(\boldsymbol{\theta}_0) = \frac{\partial F}{\partial \boldsymbol{\theta}}\bigg|_{\boldsymbol{\theta}_0}.
+\]</span> Then the linearised dynamics are <span class="math display">\[
+\dot{\boldsymbol{\theta}} \approx F(\boldsymbol{\theta}_0) + M(\boldsymbol{\theta}_0) \delta\boldsymbol{\theta}.
+\]</span> This linearisation works at <em>any</em> point, <span class="math inline">\(\boldsymbol{\theta}_0\)</span>, not just at an equilibrium.</p>
+<h2 id="what-changes-at-non-equilibrium-points">What Changes at Non-Equilibrium Points?</h2>
+<p>The difference between equilibrium and non-equilibrium linearisation is simple but important. At equilibrium (<span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> where <span class="math inline">\(F(\boldsymbol{\theta}^\ast) = 0\)</span>), <span class="math display">\[
+\dot{\boldsymbol{\theta}} \approx M(\boldsymbol{\theta}^\ast) q, \quad q = \boldsymbol{\theta} - \boldsymbol{\theta}^\ast.
+\]</span></p>
+<ul>
+<li>No constant drift term</li>
+<li>Pure linear dynamics</li>
+<li>Perturbations evolve according to <span class="math inline">\(M\)</span> alone</li>
+</ul>
+<p>At a general point (<span class="math inline">\(\boldsymbol{\theta}_0\)</span> where <span class="math inline">\(F(\boldsymbol{\theta}_0) \neq 0\)</span>): <span class="math display">\[
+\dot{\boldsymbol{\theta}} \approx F(\boldsymbol{\theta}_0) + M(\boldsymbol{\theta}_0) \delta\boldsymbol{\theta}.
+\]</span></p>
+<ul>
+<li>Constant drift <span class="math inline">\(F(\boldsymbol{\theta}_0)\)</span> carries the system along the flow</li>
+<li>Linear corrections <span class="math inline">\(M\delta\boldsymbol{\theta}\)</span> describe how nearby trajectories diverge/converge/rotate relative to the reference trajectory</li>
+</ul>
+<p>The physical interpretation is that at a non-equilibrium point, you’re sitting on a “moving platform” (the flow <span class="math inline">\(F(\boldsymbol{\theta}_0)\)</span>) and watching how nearby trajectories behave relative to you. The matrix <span class="math inline">\(M\)</span> tells you whether they come closer, move away, or rotate around you as you all flow together.</p>
+<p><strong>Analogy—cycling peloton:</strong> Think of a cycling race where you’re riding in the peloton (the main pack). The peloton as a whole races down the road (this is the drift, <span class="math inline">\(F\)</span>). But if you’re one rider in the pack, you notice the riders around you aren’t just moving forward, they’re moving <em>relative</em> to you: some drift closer (drafting behind you), some pull ahead, some fall back, some move laterally to find better position. A group of riders might even break away from the pack entirely, showing a bifurcation. The matrix <span class="math inline">\(M\)</span> describes exactly these relative dynamics: it tells you how nearby riders (trajectories) move with respect to you as you all race forward together.</p>
+<h2 id="why-does-the-jacobian-m-matter">Why Does the Jacobian <span class="math inline">\(M\)</span> Matter?</h2>
+<p>You might wonder: “If there’s a constant drift term at non-equilibrium points, why do we care about <span class="math inline">\(M\)</span>?”</p>
+<p>The answer is that <span class="math inline">\(M\)</span> reveals the <em>local geometry of the flow</em>.</p>
+<ol type="1">
+<li><p><strong>Stability/Instability</strong>: Even with drift, <span class="math inline">\(M\)</span> tells us if nearby trajectories converge toward or diverge away from the reference trajectory. Real eigenvalues of <span class="math inline">\(M\)</span> give exponential convergence/divergence rates.</p></li>
+<li><p><strong>Rotation/Oscillation</strong>: Imaginary eigenvalues of <span class="math inline">\(M\)</span> tell us if the flow exhibits local rotation or spiraling, independent of the drift direction.</p></li>
+<li><p><strong>Universal decomposition</strong>: At every point, we can decompose <span class="math inline">\(M = S + A\)</span> where <span class="math inline">\(S\)</span> is symmetric and <span class="math inline">\(A\)</span> is antisymmetric. This decomposition is <em>always valid</em> because it’s purely mathematical—any square matrix has a unique such decomposition.</p></li>
+<li><p><strong>Physical meaning</strong>: The symmetric part <span class="math inline">\(S\)</span> describes how “volume” in phase space contracts or expands (dissipation). The antisymmetric part <span class="math inline">\(A\)</span> describes how trajectories rotate around each other (conservation). This interpretation holds at every point, whether equilibrium or not.</p></li>
+</ol>
+<p>In today’s lecture, we’ll focus on this decomposition <span class="math inline">\(M = S + A\)</span> and what it reveals about the structure of information dynamics.</p>
+<h2 id="equilibrium-as-a-special-case">Equilibrium as a Special Case</h2>
+<p>From this perspective, equilibrium points are not privileged, they’re just the special case where <span class="math inline">\(F(\boldsymbol{\theta}^\ast) = 0\)</span>, so the drift term vanishes and we have pure linear dynamics.</p>
+<p>Why did we study equilibria first in Lecture 6? Two reasons:</p>
+<ol type="1">
+<li><p><strong>Pedagogical</strong>: Equilibria are conceptually simpler (no drift term), making them ideal for introducing linearisation techniques.</p></li>
+<li><p><strong>Practical</strong>: At equilibrium, we can study long-time behavior without the system “drifting away.” This makes equilibrium analysis particularly useful for understanding steady states and stability.</p></li>
+</ol>
+<p>But now we can appreciate that the linearisation framework—and the decomposition <span class="math inline">\(M = S + A\)</span> we’ll study today—applies <em>everywhere</em> on the constraint manifold. The flow structure is richer than equilibria alone can reveal.</p>
+<p><strong>Summary:</strong> Linearisation is not restricted to an equilibrium. At any point <span class="math inline">\(\boldsymbol{\theta}_0\)</span> on the constraint manifold, we can linearise to get <span class="math inline">\(\dot{\boldsymbol{\theta}} \approx F(\boldsymbol{\theta}_0) + M(\boldsymbol{\theta}_0)\delta\boldsymbol{\theta}\)</span>. The Jacobian <span class="math inline">\(M\)</span> captures the local flow geometry, and its decomposition <span class="math inline">\(M = S + A\)</span> reveals the balance between dissipative and conservative dynamics at that point. Equilibria are just the special case where the drift term <span class="math inline">\(F\)</span> vanishes, simplifying the analysis but not fundamentally changing the structure. In today’s lecture, we’ll explore this decomposition and see what it tells us about information dynamics.</p>
 <h1 id="required-snippets">Required Snippets</h1>
 <h2 id="matrix-decomposition-review-10-min">Matrix Decomposition Review (10 min)</h2>
 <p><strong>Snippet: <code>symmetric-antisymmetric-decomposition.md</code></strong> - <strong>Status:</strong> ✅ CREATED (2025-10-21) - <strong>Location:</strong> <code>~/lawrennd/snippets/_maths/includes/symmetric-antisymmetric-decomposition.md</code> - <strong>Content:</strong> - Unique decomposition: <span class="math inline">\(M = S + A\)</span> - Formulas: <span class="math inline">\(S = \frac{1}{2}(M + M^\top)\)</span>, <span class="math inline">\(A = \frac{1}{2}(M - M^\top)\)</span> - Physical interpretation (dissipative vs conservative) - Frobenius orthogonality - 2D worked example</p>
@@ -485,6 +543,24 @@ M = \frac{\partial F}{\partial \boldsymbol{\theta}} = -G + \text{(constraint ter
 \]</span></p>
 <p>The constraint terms break the symmetry, introducing an antisymmetric component <span class="math inline">\(A \neq 0\)</span>. This is the <strong>geometric origin</strong> of conservative dynamics: the constraint surface curves through parameter space, creating geometric phases (Berry-like effects) that manifest as rotation/oscillation.</p>
 <p><strong>Physical interpretation:</strong> As trajectories move along the curved constraint manifold, they experience geometric “twisting” from the constraint geometry. This is analogous to parallel transport on a curved surface—even if you move in what feels like a “straight line” locally, the curvature causes rotation. This geometric effect is precisely what the antisymmetric part <span class="math inline">\(A\)</span> captures.</p>
+<h3 id="visualizing-unconstrained-vs-constrained-flow">Visualizing Unconstrained vs Constrained Flow</h3>
+<p>Let’s visualize the difference between unconstrained and constrained dynamics to see how the constraint creates rotational flow.</p>
+<div class="figure">
+<div id="unconstrained-vs-constrained-flow-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/tig/./slides/diagrams//physics/unconstrained-vs-constrained-flow.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="unconstrained-vs-constrained-flow-magnify" class="magnify" onclick="magnifyFigure(&#39;unconstrained-vs-constrained-flow&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="unconstrained-vs-constrained-flow-caption" class="caption-frame">
+<p>Figure: Comparison of unconstrained vs constrained dynamics. Left: Without constraints, flow is purely radial toward θ=0 (symmetric <span class="math inline">\(M=-G\)</span>, no antisymmetric part). Right: With constraint <span class="math inline">\(h_1+h_2=C\)</span>, flow includes rotational component from constraint geometry (antisymmetric part <span class="math inline">\(A \neq 0\)</span>).</p>
+</div>
+</div>
+<p><strong>Observations:</strong></p>
+<p><strong>Unconstrained (left):</strong> Trajectories flow radially toward θ=0, following pure gradient descent on entropy. The dynamics are symmetric—no rotation, just convergence. This is pure dissipation.</p>
+<p><strong>Constrained (right):</strong> Trajectories flow along the constraint surface with a tangential component. The constraint forces the flow to bend, creating rotational motion. This geometric bending is what creates the antisymmetric part <span class="math inline">\(A\)</span>.</p>
+<p>The difference between these two panels is precisely the effect of constraint geometry. The antisymmetric part doesn’t exist in unconstrained dynamics—it emerges from the requirement to stay on the curved constraint manifold.</p>
 <h2 id="phase-space-trajectories">Phase Space Trajectories</h2>
 <p>Let’s visualize how trajectories evolve under the three different dynamics to see the difference between dissipative, conservative, and combined flow.</p>
 <div class="figure">
@@ -496,10 +572,10 @@ M = \frac{\partial F}{\partial \boldsymbol{\theta}} = -G + \text{(constraint ter
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="generic-decomposition-trajectories-caption" class="caption-frame">
-<p>Figure: Phase space trajectories showing: (left) pure dissipation from <span class="math inline">\(S\)</span> - all trajectories decay to origin; (center) pure rotation from <span class="math inline">\(A\)</span> - trajectories circulate without decay; (right) combined dynamics from <span class="math inline">\(M = S+A\)</span> - damped rotation spiraling toward equilibrium.</p>
+<p>Figure: Phase space trajectories showing: (left) pure dissipation from <span class="math inline">\(S\)</span> - all trajectories decay to origin; (center) pure rotation from <span class="math inline">\(A\)</span> - trajectories circulate without decay; (right) combined dynamics from <span class="math inline">\(M = S+A\)</span> - heavily damped rotation toward equilibrium.</p>
 </div>
 </div>
-<p><strong>Key insights from the visualization:</strong></p>
+<p><strong>Key insights from the visualisation:</strong></p>
 <p>Note: The trajectories are shown over an extended time (<span class="math inline">\(t \in [0, 30]\)</span>) to make the rotation from <span class="math inline">\(A\)</span> clearly visible. The oscillation period is approximately <span class="math inline">\(2\pi/0.012 \approx 524\)</span> time units, so we see only a small fraction of a full cycle.</p>
 <ol type="1">
 <li><p><strong>Pure <span class="math inline">\(S\)</span> dynamics (left)</strong>: Trajectories decay toward the origin. This is pure dissipation—the symmetric part drives convergence. All eigenvalues of <span class="math inline">\(S\)</span> are real and negative at this point.</p></li>
@@ -541,8 +617,8 @@ M = \frac{\partial F}{\partial \boldsymbol{\theta}} = -G + \text{(constraint ter
 <h1 id="problems-and-exercises">Problems and Exercises</h1>
 <p><strong>Problem Set 7:</strong> ⚠️ NEEDS CREATION - Decompose matrices into symmetric/antisymmetric parts - Compute second-order dynamics for examples - Analyze stability from eigenvalues - Identify conservative vs dissipative components - Connect to physical examples (harmonic oscillator with damping)</p>
 <h1 id="implementation-status">Implementation Status</h1>
-<p><strong>STATUS:</strong> Core content complete with computational example! - [x] Create symmetric-antisymmetric-decomposition.md snippet (COMPLETED 2025-10-21) - [x] Create second-order-information-dynamics.md snippet (COMPLETED 2025-10-21) - [x] Create conservative-dissipative-emergence.md snippet (COMPLETED 2025-10-21) - [x] Create stability-from-eigenvalues.md snippet (COMPLETED 2025-10-21) - [x] Create generic-decomposition-example.md with phase portraits (COMPLETED 2025-10-21) - [x] Core lecture content complete (~55 min material with computational example) - [ ] Review intelligence-thermodynamics-connection.md for additional ideas - [ ] Create problem set 7 - [ ] Slide deck auto-generates</p>
-<p><strong>Key achievement:</strong> Successfully explained how GENERIC structure emerges from information geometry, with concrete computational example showing S (dissipation) vs A (rotation) dynamics.</p>
+<p><strong>STATUS:</strong> Core content complete with bridge from L6! - [x] Create linearisation-general-vs-equilibrium.md snippet (COMPLETED 2025-10-21) - [x] Create symmetric-antisymmetric-decomposition.md snippet (COMPLETED 2025-10-21) - [x] Create second-order-information-dynamics.md snippet (COMPLETED 2025-10-21) - [x] Create conservative-dissipative-emergence.md snippet (COMPLETED 2025-10-21) - [x] Create stability-from-eigenvalues.md snippet (COMPLETED 2025-10-21) - [x] Create generic-decomposition-example.md with phase portraits (COMPLETED 2025-10-21) - [x] Added comparison showing A emerges from constraints (COMPLETED 2025-10-21) - [x] Core lecture content complete (~60 min material) - [ ] Review intelligence-thermodynamics-connection.md for additional ideas - [ ] Create problem set 7 - [ ] Slide deck auto-generates</p>
+<p><strong>Key achievements:</strong> - Bridged L6 (equilibrium) to L7 (general linearisation) - Explained GENERIC structure emergence with computational example - Showed antisymmetric part comes from constraint geometry</p>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
 <ul>

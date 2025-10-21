@@ -84,6 +84,105 @@
 </section>
 <section id="lecture-overview" class="slide level2">
 <h2>Lecture Overview</h2>
+<!-- SECTION From Equilibrium to General Points -->
+</section>
+<section id="from-equilibrium-to-general-points" class="slide level2">
+<h2>From Equilibrium to General Points</h2>
+</section>
+<section id="linearisation-beyond-equilibrium" class="slide level2">
+<h2>Linearisation: Beyond Equilibrium</h2>
+<p><strong>Recall from Lecture 6</strong></p>
+<p>Equilibrium linearisation</p>
+<ul>
+<li>Point: <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> where <span class="math inline">\(\dot{\boldsymbol{\theta}} = 0\)</span></li>
+<li>Perturbation: <span class="math inline">\(q = \boldsymbol{\theta} - \boldsymbol{\theta}^\ast\)</span></li>
+<li>Dynamics: <span class="math inline">\(\dot{q} = Mq\)</span></li>
+</ul>
+<p><strong>Key insight:</strong> Entropy concave <span class="math inline">\(\rightarrow\)</span> ONE equilibrium (END point) * Most of parameter space is non-equilibrium * Need to analyse flow everywhere!</p>
+<p><strong>Question:</strong> What about non-equilibrium points?</p>
+</section>
+<section id="general-linearisation-at-any-point" class="slide level2">
+<h2>General Linearisation at Any Point</h2>
+<p><strong>General Linearisation</strong></p>
+<p>At any point <span class="math inline">\(\boldsymbol{\theta}_0\)</span></p>
+<p>Taylor expand: <span class="math inline">\(\dot{\boldsymbol{\theta}} \approx F(\boldsymbol{\theta}_0) + M(\boldsymbol{\theta}_0)\delta\boldsymbol{\theta}\)</span>, where</p>
+<ul>
+<li><span class="math inline">\(F(\boldsymbol{\theta}_0) = \dot{\boldsymbol{\theta}}|_{\boldsymbol{\theta}_0}\)</span> (drift)</li>
+<li><span class="math inline">\(M(\boldsymbol{\theta}_0) = \partial F/\partial\boldsymbol{\theta}|_{\boldsymbol{\theta}_0}\)</span> (Jacobian)</li>
+<li><span class="math inline">\(\delta\boldsymbol{\theta} = \boldsymbol{\theta} - \boldsymbol{\theta}_0\)</span></li>
+</ul>
+<p>Works <em>everywhere</em>, not just at equilibrium</p>
+</section>
+<section id="what-changes-at-non-equilibrium-points" class="slide level2">
+<h2>What Changes at Non-Equilibrium Points?</h2>
+<p><strong>Equilibrium vs Non-Equilibrium</strong></p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 40%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Equilibrium <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span></th>
+<th>General <span class="math inline">\(\boldsymbol{\theta}_0\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drift</td>
+<td><span class="math inline">\(F = 0\)</span></td>
+<td><span class="math inline">\(F \neq 0\)</span></td>
+</tr>
+<tr class="even">
+<td>Dynamics</td>
+<td><span class="math inline">\(\dot{q} = Mq\)</span></td>
+<td><span class="math inline">\(\dot{\boldsymbol{\theta}} = F_0 + M\delta\boldsymbol{\theta}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Interpretation</td>
+<td>Perturbations evolve</td>
+<td>Relative to flow</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analogy:</strong> Cycling peloton * Pack races down road (drift <span class="math inline">\(F\)</span>) * Riders move relative to each other (Jacobian <span class="math inline">\(M\)</span>) * Drafting, positioning, breakaways</p>
+<p><strong>Key:</strong> <span class="math inline">\(M\)</span> describes local flow structure everywhere!</p>
+</section>
+<section id="why-does-the-jacobian-m-matter" class="slide level2">
+<h2>Why Does the Jacobian <span class="math inline">\(M\)</span> Matter?</h2>
+<p><strong>Why <span class="math inline">\(M\)</span> Matters Everywhere</strong></p>
+<p>Even with drift <span class="math inline">\(F(\boldsymbol{\theta}_0)\)</span>, the Jacobian <span class="math inline">\(M\)</span> reveals:</p>
+<ol type="1">
+<li><strong>Local stability</strong> (do nearby trajectories converge?)</li>
+<li><strong>Rotation/oscillation</strong> (do they spiral?)</li>
+<li><strong>Universal decomposition</strong> <span class="math inline">\(M = S + A\)</span>
+<ul>
+<li><span class="math inline">\(S\)</span>: symmetric (dissipation, volume change)</li>
+<li><span class="math inline">\(A\)</span>: antisymmetric (rotation, conservation)</li>
+</ul></li>
+</ol>
+<p><strong>Today’s focus:</strong> Understanding <span class="math inline">\(M = S + A\)</span></p>
+</section>
+<section id="equilibrium-as-a-special-case" class="slide level2">
+<h2>Equilibrium as a Special Case</h2>
+<p><strong>Equilibrium: Just a Special Case</strong></p>
+<p><span class="math display">\[
+F(\boldsymbol{\theta}^\ast) = 0 \quad \Rightarrow \quad \text{drift vanishes}
+\]</span></p>
+<p>Why study equilibria first?</p>
+<ul>
+<li>Pedagogically simpler (no drift)</li>
+<li>Long-time behavior clear</li>
+</ul>
+<p>But the framework is <em>general</em>:</p>
+<ul>
+<li>Linearisation: works anywhere</li>
+<li>Decomposition <span class="math inline">\(M = S + A\)</span>: works anywhere</li>
+<li>Physical interpretation: works anywhere</li>
+</ul>
+<p><strong>Flow structure is everywhere!</strong></p>
 <!-- SECTION Required Snippets -->
 </section>
 <section id="required-snippets" class="slide level2">
