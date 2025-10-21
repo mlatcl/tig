@@ -131,6 +131,12 @@ transition: None
 \include{_maths/includes/stability-from-eigenvalues.md}
 }
 
+\subsection{Computational Example (10 min)}
+
+\notes{
+\include{_physics/includes/generic-decomposition-example.md}
+}
+
 \subsection{Preview GENERIC (5 min)}
 
 \notes{
@@ -152,17 +158,18 @@ transition: None
 \section{Implementation Status}
 
 \notes{
-**STATUS:** Core content complete!
+**STATUS:** Core content complete with computational example!
 - [x] Create symmetric-antisymmetric-decomposition.md snippet (COMPLETED 2025-10-21)
 - [x] Create second-order-information-dynamics.md snippet (COMPLETED 2025-10-21)
 - [x] Create conservative-dissipative-emergence.md snippet (COMPLETED 2025-10-21)
-- [x] Core lecture content complete (~45 min material)
+- [x] Create stability-from-eigenvalues.md snippet (COMPLETED 2025-10-21)
+- [x] Create generic-decomposition-example.md with phase portraits (COMPLETED 2025-10-21)
+- [x] Core lecture content complete (~55 min material with computational example)
 - [ ] Review intelligence-thermodynamics-connection.md for additional ideas
-- [ ] Create stability-from-eigenvalues.md snippet (optional, for deeper dive)
 - [ ] Create problem set 7
-- [ ] Create slide deck
+- [ ] Slide deck auto-generates
 
-**Key achievement:** Successfully explained how GENERIC structure emerges from information geometry, connecting second-order (Gaussian/dissipative) to third-order (non-Gaussian/conservative) dynamics.
+**Key achievement:** Successfully explained how GENERIC structure emerges from information geometry, with concrete computational example showing S (dissipation) vs A (rotation) dynamics.
 }
 
 \thanks
