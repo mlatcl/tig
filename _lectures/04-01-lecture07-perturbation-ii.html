@@ -73,7 +73,7 @@ S^\top = \frac{1}{2}(M^\top + M) = S \quad \checkmark
 A^\top = \frac{1}{2}(M^\top - M) = -\frac{1}{2}(M - M^\top) = -A \quad \checkmark
 \]</span></p>
 <h2 id="physical-interpretation">Physical Interpretation</h2>
-<p>Why do we care about this decomposition? In dynamics <span class="math inline">\(\dot{x} = Mx\)</span>, the two parts have fundamentally different physical meanings.</p>
+<p>Why do we care about this decomposition? In dynamics <span class="math inline">\(\dot{x} = Mx\)</span>, the two parts represent different aspects of the system.</p>
 <p><strong>Symmetric part <span class="math inline">\(S\)</span>:</strong> - Represents dissipation or gradient flow - Changes the “energy” of the system: <span class="math inline">\(\frac{\text{d}}{\text{d}t}(x^\top x) = 2x^\top Sx\)</span> - Can increase or decrease norms - Has real eigenvalues - Example: Damping in mechanical systems</p>
 <p><strong>Antisymmetric part <span class="math inline">\(A\)</span>:</strong> - Represents conservative/Hamiltonian flow - Preserves “energy”: <span class="math inline">\(x^\top A x = 0\)</span> for all <span class="math inline">\(x\)</span> - Rotates without dissipation - Has purely imaginary eigenvalues - Example: Undamped oscillations</p>
 <p><strong>Combined dynamics:</strong> The full system <span class="math inline">\(\dot{x} = (S + A)x\)</span> exhibits both: - Dissipation (from <span class="math inline">\(S\)</span>) - Conservative rotation/oscillation (from <span class="math inline">\(A\)</span>)</p>
@@ -147,6 +147,7 @@ F(\boldsymbol{\theta}^\ast + q) = \Pi_\parallel S q + \mathcal{B}(q) + O(\|q\|^3
 <p><strong>Marginal stability:</strong> Some eigenvalues are zero - Slow modes or conservation laws - Need higher-order analysis</p>
 <p>At second order, with <span class="math inline">\(S\)</span> symmetric, all eigenvalues are <em>real</em>. There are no imaginary parts, hence no oscillations, just exponential growth or decay.</p>
 <p><strong>Summary:</strong> At second order (Gaussian regime), the dynamics near equilibrium are purely dissipative. The symmetric matrix <span class="math inline">\(S\)</span> drives entropy production and relaxation toward equilibrium. This is standard perturbation theory, but it’s not the full story. In the next section, we’ll see how non-Gaussian effects and constraint geometry introduce conservative dynamics at higher order.</p>
+<p><strong>Note on locality:</strong> This analysis is a local linearisation around a reference point (typically, but not necessarily, an equilibrium). For general systems, the matrices <span class="math inline">\(S\)</span>, <span class="math inline">\(A\)</span>, and <span class="math inline">\(M\)</span> vary with position on the manifold as both the Fisher information <span class="math inline">\(G(\boldsymbol{\theta})\)</span> and the constraint gradient <span class="math inline">\(a(\boldsymbol{\theta})\)</span> depend on <span class="math inline">\(\boldsymbol{\theta}\)</span>. The GENERIC decomposition applies locally at each point, revealing how the balance between dissipative and conservative dynamics varies across parameter space.</p>
 <h2 id="conservative-vs-dissipative-15-min">Conservative vs Dissipative (15 min)</h2>
 <h2 id="beyond-second-order-conservative-dynamics-emerge">Beyond Second Order: Conservative Dynamics Emerge</h2>
 <div style="text-align:right">
@@ -318,6 +319,187 @@ q(t) = \sum_k c_k e^{\lambda_k t} v_k,
 </ul>
 <p>The antisymmetric part provides the oscillation frequency <span class="math inline">\(\omega_0\)</span>, while the symmetric part provides the damping <span class="math inline">\(\gamma\)</span>.</p>
 <p><strong>Summary:</strong> Eigenvalue analysis provides a complete picture of near-equilibrium behavior. The GENERIC decomposition <span class="math inline">\(M = S + A\)</span> makes the physical meaning transparent: <span class="math inline">\(S\)</span> controls stability through real parts, <span class="math inline">\(A\)</span> controls oscillations through imaginary parts.</p>
+<h2 id="computational-example-10-min">Computational Example (10 min)</h2>
+<h2 id="computational-example-binary-variables-decomposition">Computational Example: Binary Variables Decomposition</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_physics/includes/generic-decomposition-example.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_physics/includes/generic-decomposition-example.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Let’s make the GENERIC decomposition concrete by computing it explicitly for the two binary variables example from Lecture 6.</p>
+<p>We’ll analyse the local flow structure at a point on the constraint manifold: <span class="math inline">\(\boldsymbol{\theta} = (0.3, -0.2, 0.1)\)</span>. This is <em>not</em> an equilibrium point (the dynamics <span class="math inline">\(\dot{\boldsymbol{\theta}} \neq 0\)</span> here), which makes it more representative of general flow behavior.</p>
+<p>At this point, we:</p>
+<ol type="1">
+<li>Compute the Fisher information matrix <span class="math inline">\(G(\boldsymbol{\theta})\)</span></li>
+<li>Compute the constraint gradient <span class="math inline">\(a(\boldsymbol{\theta}) = \nabla(h_1 + h_2)\)</span></li>
+<li>Determine the Lagrange multiplier <span class="math inline">\(\nu\)</span> from the tangency condition</li>
+<li>Compute the linearisation matrix <span class="math inline">\(M = \partial F/\partial \boldsymbol{\theta}\)</span> where <span class="math inline">\(F(\boldsymbol{\theta}) = -G\boldsymbol{\theta} - \nu a\)</span></li>
+<li>Decompose <span class="math inline">\(M = S + A\)</span> to reveal the GENERIC structure</li>
+</ol>
+<p>This analysis reveals how information flows through this region of parameter space.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> expm</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define helper functions for computing system properties</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_marginals_binary(theta1, theta2, theta12):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Compute marginal probabilities for 2D binary exponential family&quot;&quot;&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    logits <span class="op">=</span> np.array([<span class="dv">0</span>, theta1, theta2, theta1 <span class="op">+</span> theta2 <span class="op">+</span> theta12])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    log_Z <span class="op">=</span> np.logaddexp.<span class="bu">reduce</span>(logits)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    probs <span class="op">=</span> np.exp(logits <span class="op">-</span> log_Z)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> np.array([probs[<span class="dv">0</span>] <span class="op">+</span> probs[<span class="dv">2</span>], probs[<span class="dv">1</span>] <span class="op">+</span> probs[<span class="dv">3</span>]])</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> np.array([probs[<span class="dv">0</span>] <span class="op">+</span> probs[<span class="dv">1</span>], probs[<span class="dv">2</span>] <span class="op">+</span> probs[<span class="dv">3</span>]])</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p1, p2, probs</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_fisher_binary(theta1, theta2, theta12):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Compute Fisher information matrix&quot;&quot;&quot;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    _, _, probs <span class="op">=</span> compute_marginals_binary(theta1, theta2, theta12)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    phi_vals <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]])</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    mean_phi <span class="op">=</span> probs <span class="op">@</span> phi_vals</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    cov_matrix <span class="op">=</span> <span class="bu">sum</span>(p <span class="op">*</span> np.outer(phi, phi) <span class="cf">for</span> p, phi <span class="kw">in</span> <span class="bu">zip</span>(probs, phi_vals))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cov_matrix <span class="op">-</span> np.outer(mean_phi, mean_phi)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> marginal_entropy(p):</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Compute Shannon entropy&quot;&quot;&quot;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    p_clean <span class="op">=</span> p[p <span class="op">&gt;</span> <span class="fl">1e-10</span>]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(p_clean <span class="op">*</span> np.log(p_clean))</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_constraint_gradient(theta1, theta2, theta12, eps<span class="op">=</span><span class="fl">1e-5</span>):</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Numerically compute ∇(h₁ + h₂)&quot;&quot;&quot;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    p1, p2, _ <span class="op">=</span> compute_marginals_binary(theta1, theta2, theta12)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    h_base <span class="op">=</span> marginal_entropy(p1) <span class="op">+</span> marginal_entropy(p2)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    grad <span class="op">=</span> np.zeros(<span class="dv">3</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, delta <span class="kw">in</span> <span class="bu">enumerate</span>([np.array([eps,<span class="dv">0</span>,<span class="dv">0</span>]), np.array([<span class="dv">0</span>,eps,<span class="dv">0</span>]), np.array([<span class="dv">0</span>,<span class="dv">0</span>,eps])]):</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        p1_p, p2_p, _ <span class="op">=</span> compute_marginals_binary(</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>            theta1 <span class="op">+</span> delta[<span class="dv">0</span>], theta2 <span class="op">+</span> delta[<span class="dv">1</span>], theta12 <span class="op">+</span> delta[<span class="dv">2</span>])</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        h_plus <span class="op">=</span> marginal_entropy(p1_p) <span class="op">+</span> marginal_entropy(p2_p)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        grad[i] <span class="op">=</span> (h_plus <span class="op">-</span> h_base) <span class="op">/</span> eps</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grad</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Analyze at a typical (non-equilibrium) point</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.array([<span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.2</span>, <span class="fl">0.1</span>])</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Analyzing at θ = </span><span class="sc">{</span>theta<span class="sc">}</span><span class="ch">\n</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute system properties at this point</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> compute_fisher_binary(theta[<span class="dv">0</span>], theta[<span class="dv">1</span>], theta[<span class="dv">2</span>])</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> compute_constraint_gradient(theta[<span class="dv">0</span>], theta[<span class="dv">1</span>], theta[<span class="dv">2</span>])</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Lagrange multiplier from tangency condition</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>F_unconstrained <span class="op">=</span> <span class="op">-</span>G <span class="op">@</span> theta</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> <span class="op">-</span>np.dot(F_unconstrained, a) <span class="op">/</span> np.dot(a, a)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Dynamics at this point</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> F_unconstrained <span class="op">-</span> nu <span class="op">*</span> a</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;ν = </span><span class="sc">{nu:.4f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;||F(θ)|| = </span><span class="sc">{np.</span>linalg<span class="sc">.</span>norm(F)<span class="sc">:.4f}</span><span class="ss"> (non-zero, not equilibrium)</span><span class="ch">\n</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute linearization M = ∂F/∂θ numerically</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>eps_diff <span class="op">=</span> <span class="fl">1e-5</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.zeros((<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    theta_plus <span class="op">=</span> theta.copy()</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    theta_plus[i] <span class="op">+=</span> eps_diff</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    G_plus <span class="op">=</span> compute_fisher_binary(theta_plus[<span class="dv">0</span>], theta_plus[<span class="dv">1</span>], theta_plus[<span class="dv">2</span>])</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    a_plus <span class="op">=</span> compute_constraint_gradient(theta_plus[<span class="dv">0</span>], theta_plus[<span class="dv">1</span>], theta_plus[<span class="dv">2</span>])</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    F_unc_plus <span class="op">=</span> <span class="op">-</span>G_plus <span class="op">@</span> theta_plus</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    nu_plus <span class="op">=</span> <span class="op">-</span>np.dot(F_unc_plus, a_plus) <span class="op">/</span> np.dot(a_plus, a_plus)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    F_plus <span class="op">=</span> F_unc_plus <span class="op">-</span> nu_plus <span class="op">*</span> a_plus</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    M[:, i] <span class="op">=</span> (F_plus <span class="op">-</span> F) <span class="op">/</span> eps_diff</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Linearization matrix M = ∂F/∂θ:&quot;</span>)</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">M is </span><span class="sc">{</span><span class="st">&#39;symmetric&#39;</span> <span class="cf">if</span> <span class="sc">np.</span>allclose(M, M.T) <span class="cf">else</span> <span class="st">&#39;NOT symmetric&#39;</span><span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<p>Now decompose <span class="math inline">\(M\)</span> into symmetric and antisymmetric parts: <span class="math display">\[
+S = \frac{1}{2}(M + M^\top), \quad A = \frac{1}{2}(M - M^\top)
+\]</span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Symmetric and antisymmetric decomposition</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> (M <span class="op">+</span> M.T) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> (M <span class="op">-</span> M.T) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Symmetric part S:&quot;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(S)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Frobenius norm ||S||_F = </span><span class="sc">{np.</span>linalg<span class="sc">.</span>norm(S, <span class="st">&#39;fro&#39;</span>)<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Antisymmetric part A:&quot;</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Frobenius norm ||A||_F = </span><span class="sc">{np.</span>linalg<span class="sc">.</span>norm(A, <span class="st">&#39;fro&#39;</span>)<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify decomposition</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Verify S + A = M: </span><span class="sc">{np.</span>allclose(S <span class="op">+</span> A, M)<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Verify S^T = S: </span><span class="sc">{np.</span>allclose(S, S.T)<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Verify A^T = -A: </span><span class="sc">{np.</span>allclose(A, <span class="op">-</span>A.T)<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<h2 id="eigenvalue-analysis">Eigenvalue Analysis</h2>
+<p>Now let’s examine the eigenvalues of each part to see the dissipative vs conservative structure.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute eigenvalues</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>eigs_M <span class="op">=</span> np.linalg.eigvals(M)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>eigs_S <span class="op">=</span> np.linalg.eigvals(S)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>eigs_A <span class="op">=</span> np.linalg.eigvals(A)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Eigenvalues of M (full system):&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, lam <span class="kw">in</span> <span class="bu">enumerate</span>(eigs_M):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;  λ_</span><span class="sc">{i</span><span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>lam<span class="sc">.</span>real<span class="sc">:.4f}</span><span class="ss"> + </span><span class="sc">{</span>lam<span class="sc">.</span>imag<span class="sc">:.4f}</span><span class="ss">i&quot;</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Eigenvalues of S (symmetric part):&quot;</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, lam <span class="kw">in</span> <span class="bu">enumerate</span>(eigs_S):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;  λ_</span><span class="sc">{i</span><span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>lam<span class="sc">.</span>real<span class="sc">:.4f}</span><span class="ss"> (real)&quot;</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Eigenvalues of A (antisymmetric part):&quot;</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, lam <span class="kw">in</span> <span class="bu">enumerate</span>(eigs_A):</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;  λ_</span><span class="sc">{i</span><span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>lam<span class="sc">.</span>real<span class="sc">:.4f}</span><span class="ss"> + </span><span class="sc">{</span>lam<span class="sc">.</span>imag<span class="sc">:.4f}</span><span class="ss">i&quot;</span>)</span></code></pre></div>
+<p><strong>Observations:</strong></p>
+<ol type="1">
+<li><p><strong><span class="math inline">\(S\)</span> has real eigenvalues</strong> (as expected for symmetric matrices). All three eigenvalues are negative (~-0.03, ~-0.44, ~-0.85), indicating that in the absence of the antisymmetric part, trajectories would converge toward this point. This describes the local dissipative structure.</p></li>
+<li><p><strong><span class="math inline">\(A\)</span> has purely imaginary eigenvalues</strong> (as expected for antisymmetric matrices). The imaginary parts (~±0.012i) give the local oscillatory/rotational frequency. The antisymmetric part is relatively small (<span class="math inline">\(\|A\|/\|S\| \approx 0.017\)</span>) at this point.</p></li>
+<li><p><strong><span class="math inline">\(M\)</span> combines both</strong>: real parts from <span class="math inline">\(S\)</span> (growth/decay), imaginary parts from <span class="math inline">\(A\)</span> (oscillation/rotation). Together they describe how perturbations evolve in this neighborhood of parameter space.</p></li>
+</ol>
+<p>The small ratio <span class="math inline">\(\|A\|/\|S\|\)</span> indicates that at this point, dissipative effects strongly dominate over rotational ones. This is typical for regions where the system is close to Gaussian behavior. At other points on the manifold (especially with tighter constraints or stronger correlations), the antisymmetric part can become more prominent.</p>
+<h2 id="phase-space-trajectories">Phase Space Trajectories</h2>
+<p>Let’s visualize how trajectories evolve under the three different dynamics to see the difference between dissipative, conservative, and combined flow.</p>
+<div class="figure">
+<div id="generic-decomposition-trajectories-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/tig/./slides/diagrams//physics/generic-decomposition-trajectories.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="generic-decomposition-trajectories-magnify" class="magnify" onclick="magnifyFigure(&#39;generic-decomposition-trajectories&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="generic-decomposition-trajectories-caption" class="caption-frame">
+<p>Figure: Phase space trajectories showing: (left) pure dissipation from <span class="math inline">\(S\)</span> - all trajectories decay to origin; (center) pure rotation from <span class="math inline">\(A\)</span> - trajectories circulate without decay; (right) combined dynamics from <span class="math inline">\(M = S+A\)</span> - damped rotation spiraling toward equilibrium.</p>
+</div>
+</div>
+<p><strong>Key insights from the visualization:</strong></p>
+<p>Note: The trajectories are shown over an extended time (<span class="math inline">\(t \in [0, 30]\)</span>) to make the rotation from <span class="math inline">\(A\)</span> clearly visible. The oscillation period is approximately <span class="math inline">\(2\pi/0.012 \approx 524\)</span> time units, so we see only a small fraction of a full cycle.</p>
+<ol type="1">
+<li><p><strong>Pure <span class="math inline">\(S\)</span> dynamics (left)</strong>: Trajectories decay toward the origin. This is pure dissipation—the symmetric part drives convergence. All eigenvalues of <span class="math inline">\(S\)</span> are real and negative at this point.</p></li>
+<li><p><strong>Pure <span class="math inline">\(A\)</span> dynamics (centre)</strong>: Trajectories circulate with conserved norm <span class="math inline">\(\|q\|\)</span>. This is conservative dynamics—pure rotation with no dissipation. Eigenvalues of <span class="math inline">\(A\)</span> are purely imaginary.</p></li>
+<li><p><strong>Combined <span class="math inline">\(M = S + A\)</span> dynamics (right)</strong>: Trajectories spiral inward, combining decay (from <span class="math inline">\(S\)</span>) with rotation (from <span class="math inline">\(A\)</span>). This is the GENERIC structure: dissipation + conservation working together.</p></li>
+</ol>
+<p><strong>Why is the antisymmetric effect weak here?</strong> At this point in parameter space, <span class="math inline">\(\|A\|/\|S\| \approx 0.017\)</span>. The system is in a regime where dissipative behavior strongly dominates. The antisymmetric part emerges from third-order corrections (third cumulants and constraint geometry). At other points—especially with tighter constraints or stronger correlations—the antisymmetric part becomes more prominent.</p>
+<h2 id="energy-analysis">Energy Analysis</h2>
+<p>Let’s also look at how a simple “energy-like” quantity <span class="math inline">\(E(q) = \frac{1}{2}q^\top q\)</span> (just the squared norm) evolves under each dynamics.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute energy evolution for one trajectory</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>q0 <span class="op">=</span> np.array([<span class="fl">0.1</span>, <span class="fl">0.08</span>, <span class="fl">0.0</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>t_span <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">200</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>energies <span class="op">=</span> {}</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, matrix <span class="kw">in</span> [(<span class="st">&quot;S&quot;</span>, S), (<span class="st">&quot;A&quot;</span>, A), (<span class="st">&quot;M&quot;</span>, M)]:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    traj <span class="op">=</span> np.array([expm(matrix <span class="op">*</span> t) <span class="op">@</span> q0 <span class="cf">for</span> t <span class="kw">in</span> t_span])</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    energies[name] <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">sum</span>(traj<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="figure">
+<div id="generic-energy-evolution-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/tig/./slides/diagrams//physics/generic-energy-evolution.svg" width="70%" style=" ">
+</object>
+</div>
+<div id="generic-energy-evolution-magnify" class="magnify" onclick="magnifyFigure(&#39;generic-energy-evolution&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="generic-energy-evolution-caption" class="caption-frame">
+<p>Figure: Energy evolution showing: (blue) pure <span class="math inline">\(S\)</span> dynamics monotonically decrease energy; (red dashed) pure <span class="math inline">\(A\)</span> dynamics conserve energy; (green) combined <span class="math inline">\(M\)</span> dynamics show damped oscillations with overall energy decrease.</p>
+</div>
+</div>
+<p>The energy plot clearly shows: - <strong>Pure <span class="math inline">\(S\)</span></strong>: Monotonic decay to zero (pure dissipation) - <strong>Pure <span class="math inline">\(A\)</span></strong>: Constant energy (pure conservation) - <strong>Combined <span class="math inline">\(M\)</span></strong>: Oscillations with overall decay (dissipation + conservation)</p>
+<p>This is exactly the GENERIC structure: the symmetric part drives irreversible energy dissipation, while the antisymmetric part creates reversible oscillations.</p>
+<p><strong>Summary:</strong> This computational example demonstrates that the GENERIC decomposition <span class="math inline">\(M = S + A\)</span> isn’t just abstract mathematics, it reveals the local structure of dynamical flow in parameter space. The symmetric part <span class="math inline">\(S\)</span> controls growth/decay directions, while the antisymmetric part <span class="math inline">\(A\)</span> controls rotation and oscillation. Together they describe how perturbations evolve in the neighborhood of the analysis point.</p>
+<p>The linearization <span class="math inline">\(M = \partial F/\partial \boldsymbol{\theta}\)</span> varies across the parameter manifold (both <span class="math inline">\(G(\boldsymbol{\theta})\)</span> and <span class="math inline">\(a(\boldsymbol{\theta})\)</span> depend on position), making the GENERIC decomposition truly local. However, the insight holds everywhere: information dynamics naturally decompose into dissipative (thermodynamic) and conservative (mechanical) components, with the balance between them varying across the manifold depending on local geometry and constraint tightness.</p>
 <h2 id="preview-generic-5-min">Preview GENERIC (5 min)</h2>
 <ul>
 <li>This split is fundamental</li>
@@ -326,8 +508,8 @@ q(t) = \sum_k c_k e^{\lambda_k t} v_k,
 <h1 id="problems-and-exercises">Problems and Exercises</h1>
 <p><strong>Problem Set 7:</strong> ⚠️ NEEDS CREATION - Decompose matrices into symmetric/antisymmetric parts - Compute second-order dynamics for examples - Analyze stability from eigenvalues - Identify conservative vs dissipative components - Connect to physical examples (harmonic oscillator with damping)</p>
 <h1 id="implementation-status">Implementation Status</h1>
-<p><strong>STATUS:</strong> Core content complete! - [x] Create symmetric-antisymmetric-decomposition.md snippet (COMPLETED 2025-10-21) - [x] Create second-order-information-dynamics.md snippet (COMPLETED 2025-10-21) - [x] Create conservative-dissipative-emergence.md snippet (COMPLETED 2025-10-21) - [x] Core lecture content complete (~45 min material) - [ ] Review intelligence-thermodynamics-connection.md for additional ideas - [ ] Create stability-from-eigenvalues.md snippet (optional, for deeper dive) - [ ] Create problem set 7 - [ ] Create slide deck</p>
-<p><strong>Key achievement:</strong> Successfully explained how GENERIC structure emerges from information geometry, connecting second-order (Gaussian/dissipative) to third-order (non-Gaussian/conservative) dynamics.</p>
+<p><strong>STATUS:</strong> Core content complete with computational example! - [x] Create symmetric-antisymmetric-decomposition.md snippet (COMPLETED 2025-10-21) - [x] Create second-order-information-dynamics.md snippet (COMPLETED 2025-10-21) - [x] Create conservative-dissipative-emergence.md snippet (COMPLETED 2025-10-21) - [x] Create stability-from-eigenvalues.md snippet (COMPLETED 2025-10-21) - [x] Create generic-decomposition-example.md with phase portraits (COMPLETED 2025-10-21) - [x] Core lecture content complete (~55 min material with computational example) - [ ] Review intelligence-thermodynamics-connection.md for additional ideas - [ ] Create problem set 7 - [ ] Slide deck auto-generates</p>
+<p><strong>Key achievement:</strong> Successfully explained how GENERIC structure emerges from information geometry, with concrete computational example showing S (dissipation) vs A (rotation) dynamics.</p>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
 <ul>
