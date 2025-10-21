@@ -32,6 +32,10 @@ transition: None
 4. Preview GENERIC structure (Lecture 8)
 }
 
+\section{From Equilibrium to General Points}
+
+\include{_physics/includes/linearisation-general-vs-equilibrium.md}
+
 \section{Required Snippets}
 
 \subsection{Matrix Decomposition Review (10 min)}
@@ -158,18 +162,23 @@ transition: None
 \section{Implementation Status}
 
 \notes{
-**STATUS:** Core content complete with computational example!
+**STATUS:** Core content complete with bridge from L6!
+- [x] Create linearisation-general-vs-equilibrium.md snippet (COMPLETED 2025-10-21)
 - [x] Create symmetric-antisymmetric-decomposition.md snippet (COMPLETED 2025-10-21)
 - [x] Create second-order-information-dynamics.md snippet (COMPLETED 2025-10-21)
 - [x] Create conservative-dissipative-emergence.md snippet (COMPLETED 2025-10-21)
 - [x] Create stability-from-eigenvalues.md snippet (COMPLETED 2025-10-21)
 - [x] Create generic-decomposition-example.md with phase portraits (COMPLETED 2025-10-21)
-- [x] Core lecture content complete (~55 min material with computational example)
+- [x] Added comparison showing A emerges from constraints (COMPLETED 2025-10-21)
+- [x] Core lecture content complete (~60 min material)
 - [ ] Review intelligence-thermodynamics-connection.md for additional ideas
 - [ ] Create problem set 7
 - [ ] Slide deck auto-generates
 
-**Key achievement:** Successfully explained how GENERIC structure emerges from information geometry, with concrete computational example showing S (dissipation) vs A (rotation) dynamics.
+**Key achievements:** 
+- Bridged L6 (equilibrium) to L7 (general linearisation)
+- Explained GENERIC structure emergence with computational example
+- Showed antisymmetric part comes from constraint geometry
 }
 
 \thanks
