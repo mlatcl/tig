@@ -21,11 +21,13 @@ transition: None
 \notes{**Duration:** 50 minutes
 
 **Prerequisites:**
+
 - Probability theory (graduate level)
 - Linear algebra
 - Basic optimization
 
 **Learning Objectives:**
+
 1. Understand exponential family distributions and their properties
 2. Grasp the Fisher Information Matrix as a geometric object
 3. Connect information theory to statistical mechanics
@@ -37,6 +39,7 @@ transition: None
 
 \notes{
 **Snippet: `exponential-families.md`**
+
 - **Status:** ⚠️ NEEDS CREATION (some reference in `information-theory-overview.md`)
 - **Source reference:** `~/lawrennd/snippets/_information-game/includes/information-theory-overview.md` (lines 38-76)
 - **Needs:** 
@@ -50,6 +53,7 @@ transition: None
 
 \notes{
 **Snippet: `quantum-exponential-family.md`**
+
 - **Status:** ✅ EXISTS with rewrite needed
 - **Location:** `~/lawrennd/snippets/_information-game/includes/quantum-exponential-family.md`
 - **Quality:** Good pedagogical structure with slides/notes
@@ -64,6 +68,7 @@ transition: None
 
 \notes{
 **Snippet: `fisher-information-matrix.md`**
+
 - **Status:** ✅ EXISTS with rewrite needed
 - **Location:** `~/lawrennd/snippets/_information-game/includes/fisher-information-matrix.md`
 - **Quality:** Good coverage of FIM basics and rcFIM
@@ -77,6 +82,7 @@ transition: None
 
 \notes{
 **Snippet: `information-topography.md`**
+
 - **Status:** ✅ EXISTS but for advanced topics
 - **Location:** `~/lawrennd/snippets/_information-game/includes/information-topography.md`
 - **Quality:** Advanced material
@@ -88,6 +94,7 @@ transition: None
 
 \notes{
 **Snippet: `information-theory-overview.md`**
+
 - **Status:** ✅ EXISTS with rewrite needed
 - **Location:** `~/lawrennd/snippets/_physics/includes/information-theory-overview.md`
 - **Quality:** Good historical context
@@ -101,6 +108,7 @@ transition: None
 
 \notes{
 **Snippet: `jaynes-maximum-entropy.md`**
+
 - **Status:** ✅ EXISTS, good quality
 - **Location:** `~/lawrennd/snippets/_physics/includes/jaynes-maximum-entropy.md`
 - **Quality:** Excellent pedagogical example (die rolling)
@@ -111,9 +119,7 @@ transition: None
 - **Rewrite needed:** MINOR - mostly context/positioning
 }
 
-\section{Planned Structure}
-
-\subsection{Introduction (5 min)}
+\section{Introduction (5 min)}
 
 \notes{
 - Course overview and motivation
@@ -121,18 +127,14 @@ transition: None
 - Why information geometry?
 }
 
-\subsection{Exponential Families (30 min)}
+\section{Exponential Families (30 min)}
 
-\notes{
 \include{_physics/includes/exponential-families.md}
 \include{_information-game/includes/quantum-exponential-family.md}
-}
 
-\subsection{Fisher Information as Geometry (20 min)}
+\section{Fisher Information as Geometry (20 min)}
 
-\notes{
 \include{_information-game/includes/fisher-information-geometry.md}
-}
 
 \subsection{Wrap-up (5 min)}
 
