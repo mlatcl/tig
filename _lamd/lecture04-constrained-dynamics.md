@@ -1,5 +1,5 @@
 ---
-title: "Lecture 4: Constrained Dynamics and Lagrangian Formulation"
+title: "Constrained Dynamics and Lagrangian Formulation"
 week: 2
 session: 2
 featured_image: slides/diagrams/tig-constraints.svg

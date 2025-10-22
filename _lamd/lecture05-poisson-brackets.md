@@ -1,5 +1,5 @@
 ---
-title: "Lecture 5: Poisson Brackets and Hamiltonian Structure"
+title: "Poisson Brackets and Hamiltonian Structure"
 week: 3
 session: 1
 featured_image: slides/diagrams/tig-poisson.svg

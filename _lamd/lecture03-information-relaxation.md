@@ -1,5 +1,5 @@
 ---
-title: "Lecture 3: Information Relaxation Principle"
+title: "Information Relaxation Principle"
 week: 2
 session: 1
 featured_image: slides/diagrams/tig-relaxation.svg

@@ -1,5 +1,5 @@
 ---
-title: "Lecture 8: GENERIC Structure"
+title: "GENERIC Structure"
 week: 4
 session: 2
 featured_image: slides/diagrams/tig-generic.svg

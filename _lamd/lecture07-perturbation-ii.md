@@ -1,5 +1,5 @@
 ---
-title: "Lecture 7: Perturbation Analysis II - Symmetric/Antisymmetric Split"
+title: "Perturbation Analysis II - Symmetric/Antisymmetric Split"
 week: 4
 session: 1
 featured_image: slides/diagrams/tig-split.svg

@@ -1,5 +1,5 @@
 ---
-title: "Lecture 2: The Four Axioms and Information Loss"
+title: "The Four Axioms and Information Loss"
 week: 1
 session: 2
 featured_image: slides/diagrams/tig-axioms.svg

@@ -1,5 +1,5 @@
 ---
-title: "Lecture 6: Perturbation Analysis - Linearisation Around Equilibrium"
+title: "Perturbation Analysis - Linearisation Around Equilibrium"
 week: 3
 session: 2
 featured_image: slides/diagrams/tig-perturbation.svg

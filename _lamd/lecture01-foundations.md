@@ -1,5 +1,5 @@
 ---
-title: "Lecture 1: Foundations and Exponential Families"
+title: "Foundations and Exponential Families"
 week: 1
 session: 1
 featured_image: slides/diagrams/tig-foundations.svg
