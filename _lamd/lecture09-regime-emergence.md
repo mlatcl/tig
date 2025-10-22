@@ -1,5 +1,5 @@
 ---
-title: "Lecture 9: Regime Emergence and Coexistence"
+title: "Regime Emergence and Coexistence"
 week: 5
 session: 1
 featured_image: slides/diagrams/tig-regimes.svg

@@ -1,5 +1,5 @@
 ---
-title: "Lecture 10: Synthesis and Open Questions"
+title: "Synthesis and Open Questions"
 week: 5
 session: 2
 featured_image: slides/diagrams/tig-synthesis.svg
@@ -24,7 +24,7 @@ transition: None
 - All previous lectures
 
 **Learning Objectives:**
-1. Synthesize the complete framework
+1. Synthesise the complete framework
 2. Understand connections to quantum mechanics
 3. Explore physical interpretations
 4. Grasp computational implications
@@ -130,22 +130,16 @@ transition: None
 
 \subsection{Quantum and Physical Connections (15 min)}
 
-\notes{
 \include{_physics/includes/quantum-connections.md}
 \include{_physics/includes/physical-interpretations.md}
-}
 
 \subsection{Computational Implications (10 min)}
 
-\notes{
 \include{_physics/includes/computational-implications.md}
-}
 
 \subsection{Open Questions and Future Directions (15 min)}
 
-\notes{
 \include{_physics/includes/open-research-questions.md}
-}
 
 \subsection{Closing Remarks (5 min)}
 
@@ -203,7 +197,7 @@ Rather than problem set 10, assign a final project:
 \notes{
 **Estimated effort:** ~2 days
 **Note:** Synthesis lecture, less technical content, more big picture
-**Challenge:** Balancing speculation with rigor
+**Challenge:** Balancing speculation with rigour
 }
 
 \thanks
