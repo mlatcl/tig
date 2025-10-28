@@ -300,4 +300,3 @@ For questions or issues:
 ## License
 
 This template is provided as-is for creating ML@CL courses. Individual course content is subject to its own licensing.
-
