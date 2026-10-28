@@ -5,6 +5,7 @@ This directory contains the source files for your course lectures and practicals
 ## Structure
 
 - `_lamd.yml` - Configuration file for LaMD processing
+- `parking.md` - Overflow holding bay (not a week; do not add to `lectures.csv`)
 - `*.md` - Lecture source files in LaMD format
 - `*-practical.md` - Practical exercise files
 
@@ -30,6 +31,11 @@ Lectures should be named following this pattern:
 
 Practicals should include `-practical` in the name:
 - `01-01-topic-practical.md`
+
+`parking.md` is the overflow holding bay, not a lecture. When a live session
+overruns, move leftover slides there and record them in the `parked:`
+frontmatter list. Compile with `maketalk parking.md` only to review overflow.
+Do not add `parking` to `lectures.csv`.
 
 ## LaMD Commands
 
